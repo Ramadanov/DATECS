@@ -1,0 +1,7 @@
+﻿  Exercise_1_1.cpp
+c:\users\user\documents\github\datext-chapter-1\project1\exercise_1_1.cpp(135): warning C4101: 'nw': unreferenced local variable
+c:\users\user\documents\github\datext-chapter-1\project1\exercise_1_1.cpp(135): warning C4101: 'nc': unreferenced local variable
+c:\users\user\documents\github\datext-chapter-1\project1\exercise_1_1.cpp(169): warning C4101: 'nw': unreferenced local variable
+c:\users\user\documents\github\datext-chapter-1\project1\exercise_1_1.cpp(169): warning C4101: 'nc': unreferenced local variable
+  Project1.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\x64\Debug\Project1.exe
+  Project1.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\x64\Debug\Project1.pdb (Partial PDB)
