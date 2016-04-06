@@ -7,6 +7,8 @@ void zadacha4();	// Celsius to Fahrenheit conversion
 void zadacha6();	// Check for EOF
 void zadacha12();	// Counting words
 void zadacha13();	// Histogram
+void zadacha14();	// Histogram based on different simbols
+//void test();		// show symbol
 
 int main()
 {
@@ -15,7 +17,6 @@ int main()
 	char testing='Y';
 	while (testing == 'Y'|| testing == 'y')
 	{
-
 		printf("Izberete edna ot zadachite: \n");
 		printf("\t*  1 * - Hello world \n");
 		printf("\t*  2 * - Fahrenheit to Celsius conversion \n");
@@ -23,8 +24,11 @@ int main()
 		printf("\t*  4 * - Check for EOF\n");
 		printf("\t*  5 * - Counting words\n");
 		printf("\t*  6 * - Histogram\n");
+		printf("\t*  7 * - Histogram based on different simbols\n");
+		//printf("\n\t*  0 * - show symbol\n");
 
 		Exercise = getchar();
+		
 		switch (Exercise) 
 		{
 			case '1':
@@ -45,20 +49,34 @@ int main()
 			case '6':
 				zadacha13();
 				break;
+			case '7':
+				zadacha14();
+				break;
+			//case '0':
+			//	test();
+			//	break;
+
+
 		};
 
 //		printf("Vie izbrahte zadacha: ", Exercise ,"/n");
-
-		getchar();
+		/*
+		char temp[1];
 		do
 		{
+			//temp[0] = NULL;
 			printf("Iskate lid a prodyljite s testvaneto na zadachite: (Y/N)");
-			testing = getchar();
+			//fgets(temp ,sizeof testing, stdin);
+			//testing = temp[0];
 		}
-		while(testing == 'Y' || testing == 'y' || testing == 'N' || testing == 'n');
-		
-		//testing = 'N';
+		while(testing != 'Y' || testing != 'y' || testing != 'N' || testing != 'n');
+		*/
+		testing = 'N';
+		getchar();
 	}
+
+	getchar();
+
 	return 0;
 
 }
@@ -131,13 +149,16 @@ void zadacha6()
 
 void zadacha12()
 {
-	int c, counte_words = 0;
-	int nc, nw;
+	int c, count_words = 0;
+//	int nc, nw;
 	//int check_for_word;
- 
+	
+	printf("\n%d\n", count_words);
+
 	printf("Please write something: \n");
 	c = getchar();
 
+	//printf("\n%d\n", counte_words);
 	//nc = nw = 0;
 	while (c != EOF)
 	{
@@ -148,7 +169,7 @@ void zadacha12()
 			putchar('\n');
 			//check_for_word = 0; // nead to be addedn additiona check for double spacing and so...
 			//++nw;
-			counte_words = counte_words + 1;
+			count_words = count_words + 1;
 					}
 		else 
 		{
@@ -158,7 +179,7 @@ void zadacha12()
 		
 	}
 
-	printf("%d \n", counte_words);
+	printf("\n%d\n", count_words);
 	//printf("%d %d\n", nw, nc);
 	getchar();
 }
@@ -166,7 +187,7 @@ void zadacha12()
 void zadacha13()
 {
 	int c; //, counte_words = 0; // - code from zad12
-	int nc, nw;
+//	int nc, nw;
 	//int check_for_word;
 
 	printf("Please write something: \n");
@@ -198,31 +219,44 @@ void zadacha13()
 }
 
 
-void zadacha14() //work in progres
+void zadacha14() 
 {
-	int c; //, counte_words = 0; // - code from zad12
 
-	printf("Please write something: \n");
-	c = getchar();
+	char words[100];
+	int  ascii_symbol[127] = { 0 };
 
 
-	while (c != EOF)
+	printf("Please write something (14): \n");
+	fgets(words, sizeof words, stdin);
+
+	for (int i = 0; i<100; i++)
 	{
-		
+		if ((words[i] != NULL) && ((int)words[i] != 10) && ((int)words[i] != 0) && ((int)words[i] != -52))
+		{
+			ascii_symbol[(int)words[i]]++;
+			//printf("%d\t", (int)words[i]);
+			//printf("%d\t", ascii_symbol[(int)words[i]]);
+			//printf("\n");
 
-		if ((c == ' ' || c == '\n' || c == '\t')) //checking for delimiter
-		{
-			putchar('\n');
-			
-		else
-		{
-			printf("*");
 		}
-		c = getchar();
-		//break;
 	}
 
-	//printf("%d \n", counte_words); // - code from zad12
-	//printf("%d %d\n", nw, nc); // - code from zad12
+	for (int i = 0; i < 128; i++)
+	{
+		if (ascii_symbol[i]>0)
+		{
+			//printf("%d\n", i);
+			char temp;
+			temp = (char)i;
+			printf("%c", temp);
+			for (int j = 0; j < ascii_symbol[i]; j++)
+			{
+				printf("*");
+			}
+			printf("\n");
+		}
+	}
+
 	getchar();
+	
 }
