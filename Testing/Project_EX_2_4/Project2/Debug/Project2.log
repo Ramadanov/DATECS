@@ -1,9 +1,7 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Project2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Ex_2_4_test.cpp
-c:\users\user\documents\github\datext-chapter-1\testing\project_ex_2_4\project2\ex_2_4_test.cpp(12): error C2664: 'char *fgets(char *,int,FILE *)': cannot convert argument 1 from 'int [10]' to 'char *'
-  c:\users\user\documents\github\datext-chapter-1\testing\project_ex_2_4\project2\ex_2_4_test.cpp(12): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-c:\users\user\documents\github\datext-chapter-1\testing\project_ex_2_4\project2\ex_2_4_test.cpp(16): warning C4302: 'type cast': truncation from 'int *' to 'char'
-c:\users\user\documents\github\datext-chapter-1\testing\project_ex_2_4\project2\ex_2_4_test.cpp(17): error C2664: 'void squeezes(char [],int)': cannot convert argument 1 from 'int [10]' to 'char []'
-  c:\users\user\documents\github\datext-chapter-1\testing\project_ex_2_4\project2\ex_2_4_test.cpp(17): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-c:\users\user\documents\github\datext-chapter-1\testing\project_ex_2_4\project2\ex_2_4_test.cpp(19): warning C4302: 'type cast': truncation from 'int *' to 'char'
+c:\users\user\documents\github\datext-chapter-1\testing\project_ex_2_4\project2\ex_2_4_test.cpp(16): warning C4302: 'type cast': truncation from 'char *' to 'char'
+c:\users\user\documents\github\datext-chapter-1\testing\project_ex_2_4\project2\ex_2_4_test.cpp(19): warning C4302: 'type cast': truncation from 'char *' to 'char'
 c:\users\user\documents\github\datext-chapter-1\testing\project_ex_2_4\project2\ex_2_4_test.cpp(31): warning C4390: ';': empty controlled statement found; is this the intent?
+  Project2.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Project_Ex_2_4\Debug\EX_2_4.exe
+  Project2.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Project_Ex_2_4\Debug\EX_2_4.pdb (Partial PDB)

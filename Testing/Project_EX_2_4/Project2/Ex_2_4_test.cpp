@@ -6,7 +6,7 @@ void squeezes(char s1[], int c);
 int main()
 {
 	int const lenght = 10;
-	int s1[lenght];
+	char s1[lenght];
 	int c;
 	printf("Input sq :\n");
 	fgets(s1, sizeof s1, stdin);
