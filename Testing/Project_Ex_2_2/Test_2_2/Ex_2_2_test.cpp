@@ -2,7 +2,7 @@
 
 
 int main()
-{
+{	
 	int lim = 5;
 	int c;
 
@@ -30,7 +30,7 @@ int main()
 	printf("{\n");
 	printf("\tif (c = getchar() != (EOF)) :\n");
 	printf("%c*", (char)c);
-	for (int i = 0;(i < lim - 1); ++i)
+	for (int i = 1;(i < lim - 1); ++i)
 	{
 		c = getchar();
 		if (c != (EOF))
@@ -38,7 +38,7 @@ int main()
 			printf("%c", (char)c);
 			if (c != '\n')
 			{
-				if(i + 1 < lim - 1)
+				if(i < lim - 1)
 				{
 					printf("*");
 				}

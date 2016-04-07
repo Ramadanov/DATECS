@@ -5,12 +5,12 @@ void zadacha1();	// Hello world
 void zadacha3();	// Fahrenheit to Celsius conversion
 void zadacha4();	// Celsius to Fahrenheit conversion
 void zadacha6();	// Check for EOF
-/*void zadacha12();	// Counting words
+void zadacha12();	// Counting words
 void zadacha13();	// Histogram
 void zadacha14();	// Histogram based on different simbols
 void zadacha15();	// show symbol
-int zadacha15sub(double celsius1);
-*/
+int zadacha15sub(double );
+
 int main()
 {
 	int Exercise;
@@ -155,7 +155,7 @@ void zadacha12()
 //	int nc, nw;
 	//int check_for_word;
 	
-	printf("\n%d\n", count_words);
+	//printf("\n%d\n", count_words);
 
 	printf("Please write something: \n");
 	c = getchar();
@@ -293,4 +293,3 @@ int zadacha15sub(double celsius1)
 		return 0;
 }
 
-*/
