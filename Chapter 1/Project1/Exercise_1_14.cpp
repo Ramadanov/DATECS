@@ -19,7 +19,6 @@
 			//printf("%d\t", (int)words[i]);
 			//printf("%d\t", ascii_symbol[(int)words[i]]);
 			//printf("\n");
-
 		}
 	}
 
