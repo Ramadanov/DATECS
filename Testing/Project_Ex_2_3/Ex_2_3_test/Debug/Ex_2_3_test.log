@@ -1,0 +1,5 @@
+﻿  Ex_2_3_test.cpp
+c:\users\user\documents\github\datext-chapter-1\testing\ex_2_3_test\ex_2_3_test\ex_2_3_test.cpp(9): warning C4101: 'hexadecreverse': unreferenced local variable
+c:\users\user\documents\github\datext-chapter-1\testing\ex_2_3_test\ex_2_3_test\ex_2_3_test.cpp(17): warning C4101: 'intconverter': unreferenced local variable
+  Ex_2_3_test.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Ex_2_3_test\Debug\Ex_2_3.exe
+  Ex_2_3_test.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Ex_2_3_test\Debug\Ex_2_3.pdb (Partial PDB)
