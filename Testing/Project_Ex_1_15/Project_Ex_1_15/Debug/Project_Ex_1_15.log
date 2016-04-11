@@ -1,0 +1,7 @@
+﻿  Ex_1_15_testing.cpp
+c:\users\user\documents\github\datext-chapter-1\testing\project_ex_1_15\project_ex_1_15\ex_1_15_testing.cpp(53): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\user\documents\github\datext-chapter-1\testing\project_ex_1_15\project_ex_1_15\ex_1_15_testing.cpp(65): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\user\documents\github\datext-chapter-1\testing\project_ex_1_15\project_ex_1_15\ex_1_15_testing.cpp(84): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\user\documents\github\datext-chapter-1\testing\project_ex_1_15\project_ex_1_15\ex_1_15_testing.cpp(95): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Project_Ex_1_15.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Project_Ex_1_15\Debug\Project_Ex_1_15.exe
+  Project_Ex_1_15.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Project_Ex_1_15\Debug\Project_Ex_1_15.pdb (Partial PDB)

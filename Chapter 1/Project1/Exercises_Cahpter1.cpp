@@ -34,25 +34,36 @@ int main()
 		switch (Exercise) 
 		{
 			case '1':
+				while (getchar() != '\n');
 				zadacha1();
 				break;
 			case '2':
+				while (getchar() != '\n');
 				zadacha3();
 				break;
 			case '3':
 				zadacha4();
+				while (getchar() != '\n');
 				break;
 			case '4':
 				zadacha6();
+				while (getchar() != '\n');
 				break;
 			case '5':
 				zadacha12();
+				while (getchar() != '\n');
 				break;
 			case '6':
+				while (getchar() != '\n');
 				zadacha13();
 				break;
 			case '7':
+				while (getchar() != '\n');
 				zadacha14();
+				break;
+			case '8':
+				while (getchar() != '\n');
+				zadacha15();
 				break;
 			//case '0':
 			//	test();
@@ -266,6 +277,68 @@ void zadacha14()
 
 void zadacha15()
 {
+
+	void zadacha3sub();
+	void zadacha4sub();
+
+	char TemperatureType;
+	printf("Please couse which from which you want to convert ->\n");	//header
+	printf("C to F type ->'C' \n");
+	printf("F to C type ->'F' \n");
+	TemperatureType = getchar();
+
+	switch (TemperatureType)
+	{
+	case 'C':
+		zadacha4sub();
+		break;
+	case 'F':
+		zadacha3sub();
+		break;
+	default:
+		printf("!!!Incorrect input.!!! \n");
+		break;
+	}
+
+	while (getchar() != '\n');
+	getchar();
+}
+void zadacha3sub()
+{	
+	int concetrFtoC(int);
+	double fahr, celsius;
+	float min, step, max;
+
+	min = 0.0;	//lower limit 
+	step = 20.0;	//setep size
+	max = 300.0;	//upper limit
+
+	fahr = min;
+
+	printf(" (F)\t   (C)\n");	//header
+	while (fahr <= max)
+	{
+
+		celsius = (fahr);
+		printf("%3.0f \t %6.1f\n", fahr, celsius);
+		fahr = fahr + step;
+		//	celsius = (5.0 / 9.0) * (fahr - 32.0);
+		//printf("%3.0f \t %6.1f\n", fahr, celsius);
+		//	fahr = fahr + step;
+	}
+	//getchar();
+}
+int concetrFtoC(int fahr)
+{
+	int celsius;
+	celsius = (5.0 / 9.0) * (fahr - 32.0);
+	return celsius;
+
+}
+
+void zadacha4sub()
+{
+	int concetrCtoF(int);
 	double fahr1, celsius1;
 	float min1, step1, max1;
 
@@ -278,18 +351,18 @@ void zadacha15()
 	printf("   (C)\t (F)\n");	//header
 	while (celsius1 <= max1)
 	{
-		fahr1 = zadacha15sub(celsius1);
-		//printf("%6.0f \t %3.1f\n", celsius1, fahr1);
+		fahr1 = concetrCtoF(celsius1);
+		printf("%6.0f \t %3.1f\n", celsius1, fahr1);
+
 		celsius1 = celsius1 + step1;
 	}
-	getchar();
+	//getchar();
 }
-int zadacha15sub(double celsius1)
+
+int concetrCtoF(int celsius1)
 {
-	double fahr1;
-	
-		fahr1 = (9.0 / 5.0 * celsius1) + 32.0;
-		printf("%6.0f \t %3.1f\n", celsius1, fahr1);
-		return 0;
+	int fahr1;
+	fahr1 = (9.0 / 5.0 * celsius1) + 32.0;
+	return fahr1;
 }
 
