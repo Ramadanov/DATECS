@@ -1,28 +1,26 @@
+/*Write a program that prints its input one word per line.*/
 #include <stdio.h>
 
 int main()
 {
 	int c, count_words = 0;
 	//	int nc, nw;
-	//int check_for_word;
-
-	//printf("\n%d\n", count_words);
+	bool check_for_word = false;
 
 	printf("Please write something: \n");
 	c = getchar();
-
-	//printf("\n%d\n", counte_words);
-	//nc = nw = 0;
-	while (c != EOF)
+	while (c != '\n')
 	{
-		//	++nc;
+		if ((c != ' ' && c != '\n' && c != '\t')&&(!check_for_word)) //checking for startinbg symbol
+		{
+			check_for_word = true;
+			count_words++;
+		}
 
-		if ((c == ' ' || c == '\n' || c == '\t')) //checking for delimiter
+		if ((c == ' ' || c == '\n' || c == '\t')&&(check_for_word)) //checking for delimiter
 		{
 			putchar('\n');
-			//check_for_word = 0; // nead to be addedn additiona check for double spacing and so...
-			//++nw;
-			count_words = count_words + 1;
+			check_for_word = false;
 		}
 		else
 		{
@@ -33,7 +31,7 @@ int main()
 	}
 
 	printf("\n%d\n", count_words);
-	//printf("%d %d\n", nw, nc);
+
 	getchar();
 	return 0;
 }

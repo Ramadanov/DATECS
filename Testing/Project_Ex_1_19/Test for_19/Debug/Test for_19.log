@@ -1,3 +1,4 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Test for_19.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Test for_19.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Project_Ex_1_19\Debug\Ex_1_19.exe
-  Test for_19.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Project_Ex_1_19\Debug\Ex_1_19.pdb (Partial PDB)
+  Ex_1_19_test.cpp
+  Test for_19.vcxproj -> C:\Users\dsdfh\Documents\GitHub\Datext-Chapter-new\Datext-Chapter-1\Testing\Project_Ex_1_19\Debug\Ex_1_19.exe
+  Test for_19.vcxproj -> C:\Users\dsdfh\Documents\GitHub\Datext-Chapter-new\Datext-Chapter-1\Testing\Project_Ex_1_19\Debug\Ex_1_19.pdb (Partial PDB)

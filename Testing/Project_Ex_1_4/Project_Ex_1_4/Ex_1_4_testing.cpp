@@ -1,3 +1,4 @@
+/*Exercise 1-4 Write a program to print the corresponding Celsius to Fahrenhiet table. */
 #include <stdio.h>
 
 int main()

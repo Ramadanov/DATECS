@@ -8,12 +8,13 @@ void zadacha6();	// Check for EOF
 void zadacha12();	// Counting words
 void zadacha13();	// Histogram
 void zadacha14();	// Histogram based on different simbols
-void zadacha15();	// show symbol
-	void zadacha3sub();
-		int concetrFtoC(int);
-	void zadacha4sub();
-		int concetrCtoF(int);
-//void zadacha19();	// 
+void zadacha15();	// Fahrenheit to Celsius conversion - caling a function for converion\n");
+	void zadacha3sub();				//*******************
+		int concetrFtoC(int);		//sub prigrams used 
+	void zadacha4sub();				//in :zadacha 15
+		int concetrCtoF(int);		//*******************
+void zadacha19();	//Reverses input line at a time
+
 
 
 int main()
@@ -32,6 +33,7 @@ int main()
 		printf("\t*  6 * - Histogram\n");
 		printf("\t*  7 * - Histogram based on different simbols\n");
 		printf("\t*  8 * - Fahrenheit to Celsius conversion - caling a function for converion\n");
+		printf("\t*  9 * - Reverses input line at a time\n");
 		//printf("\n\t*  0 * - show symbol\n");
 
 		Exercise = getchar();
@@ -40,35 +42,39 @@ int main()
 		{
 			case '1':
 				while (getchar() != '\n');
-				zadacha1();
+				zadacha1(); // Hello world
 				break;
 			case '2':
 				while (getchar() != '\n');
-				zadacha3();
+				zadacha3(); // Fahrenheit to Celsius conversion
 				break;
 			case '3':
 				zadacha4();
+				while (getchar() != '\n'); // Celsius to Fahrenheit conversion
+				break;
+			case '4': // Check for EOF
+				zadacha6(); 
 				while (getchar() != '\n');
 				break;
-			case '4':
-				zadacha6();
-				while (getchar() != '\n');
-				break;
-			case '5':
+			case '5': // Counting words
 				zadacha12();
 				while (getchar() != '\n');
 				break;
-			case '6':
+			case '6': // Histogram
 				while (getchar() != '\n');
 				zadacha13();
 				break;
-			case '7':
+			case '7': // Histogram based on different simbols
 				while (getchar() != '\n');
 				zadacha14();
 				break;
-			case '8':
+			case '8': 
 				while (getchar() != '\n');
 				zadacha15();
+				break;
+			case '9':
+				while (getchar() != '\n');
+				zadacha19();
 				break;
 			//case '0':
 			//	test();
@@ -76,7 +82,8 @@ int main()
 
 
 		};
-
+		printf("Press any key to continue ... :) \n");
+		getchar();
 		do
 		{
 			while (getchar() != '\n');
@@ -102,14 +109,13 @@ int main()
 
 
 
-void zadacha1()
+void zadacha1() // Hello world
 {
 	printf("!!!!!Hello ");
 	printf("world!!!!! :) \n");
-	printf("Press any key to continue ... :) \n");
 }
 
-void zadacha3()
+void zadacha3() // Fahrenheit to Celsius conversion
 {
 	double fahr, celsius;
 	float min, step, max;
@@ -127,10 +133,10 @@ void zadacha3()
 			printf("%3.0f \t %6.1f\n", fahr, celsius);
 			fahr = fahr + step;
 		}
-	getchar();
+	//getchar();
 }
 
-void zadacha4()
+void zadacha4() // Celsius to Fahrenheit conversion
 {
 	double fahr1, celsius1;
 	float min1, step1, max1;
@@ -150,8 +156,11 @@ void zadacha4()
 	}
 	getchar();
 }
+/********************END function ()****************************/
 
-void zadacha6()
+
+/********************(EOF)****************************/
+void zadacha6() // Check for EOF
 {
 	int c;
 		while (c=getchar() != EOF)
@@ -162,47 +171,49 @@ void zadacha6()
 	//printf("%d", c);
 
 	printf("\n *EOF is 1* \t\n");
-	getchar();
+	while (getchar() != '\n');
+	//getchar();
 }
+/********************END function (EOF)****************************/
 
-void zadacha12()
+/********************Counting words****************************/
+void zadacha12() // Counting words
 {
+	getchar();
 	int c, count_words = 0;
-//	int nc, nw;
-	//int check_for_word;
-	
-	//printf("\n%d\n", count_words);
+	//	int nc, nw;
+	bool check_for_word = false;
 
 	printf("Please write something: \n");
 	c = getchar();
-
-	//printf("\n%d\n", counte_words);
-	//nc = nw = 0;
-	while (c != EOF)
+	while (c != '\n')
 	{
-	//	++nc;
+		if ((c != ' ' && c != '\n' && c != '\t') && (!check_for_word)) //checking for startinbg symbol
+		{
+			check_for_word = true;
+			count_words++;
+		}
 
-		if ((c == ' ' || c == '\n' || c == '\t') ) //checking for delimiter
+		if ((c == ' ' || c == '\n' || c == '\t') && (check_for_word)) //checking for delimiter
 		{
 			putchar('\n');
-			//check_for_word = 0; // nead to be addedn additiona check for double spacing and so...
-			//++nw;
-			count_words = count_words + 1;
-					}
-		else 
+			check_for_word = false;
+		}
+		else
 		{
 			putchar(c);
 		}
 		c = getchar();
-		
+
 	}
 
 	printf("\n%d\n", count_words);
-	//printf("%d %d\n", nw, nc);
-	getchar();
+	//getchar();
 }
+/********************END function (Counting words)****************************/
 
-void zadacha13()
+/********************Histogram function****************************/
+void zadacha13() // Histogram
 {
 	int c; //, counte_words = 0; // - code from zad12
 //	int nc, nw;
@@ -233,11 +244,13 @@ void zadacha13()
 
 	//printf("%d \n", counte_words); // - code from zad12
 	//printf("%d %d\n", nw, nc); // - code from zad12
-	getchar();
+
+	//getchar();
 }
+/********************END function (Histogram) **************************/
 
-
-void zadacha14() 
+/********************Histogram based on different simbols****************************/
+void zadacha14() // Histogram based on different simbols
 {
 
 	char words[100];
@@ -274,12 +287,11 @@ void zadacha14()
 			printf("\n");
 		}
 	}
-
-	getchar();
 	
 }
+/********************END function (Histogram based on different simbols) **********************/
 
-
+/************ Temperature conversion - caling a function for converion ************/
 void zadacha15()
 {
 	char TemperatureType;
@@ -304,66 +316,120 @@ void zadacha15()
 		}
 	}
 	while (getchar() != '\n');
+	//getchar();
 }
-void zadacha3sub()
-{	
+/********************END function (Temperature- caling a function for converion) **********************/
+
+
+	/********************zadacha3sub ((zadacha15) **********************/
+	void zadacha3sub()
+	{
+
+		double fahr, celsius;
+		float min, step, max;
+
+		min = 0.0;	//lower limit 
+		step = 20.0;	//setep size
+		max = 300.0;	//upper limit
+
+		fahr = min;
+
+		printf(" (F)\t   (C)\n");	//header
+		while (fahr <= max)
+		{
+
+			celsius = (fahr);
+			printf("%3.0f \t %6.1f\n", fahr, celsius);
+			fahr = fahr + step;
+			//	celsius = (5.0 / 9.0) * (fahr - 32.0);
+			//printf("%3.0f \t %6.1f\n", fahr, celsius);
+			//	fahr = fahr + step;
+		}
+		//getchar();
+	}
+	/********************END function () **********************/
+
+	/********************concetrFtoC(zadacha15)**********************/
+	int concetrFtoC(int fahr)
+	{
+		int celsius;
+		celsius = (5.0 / 9.0) * (fahr - 32.0);
+		return celsius;
+
+	}
+	/********************END function () **********************/
+
+	/********************zadacha4sub (zadacha15)**********************/
+	void zadacha4sub()
+	{
+		double fahr1, celsius1;
+		float min1, step1, max1;
+
+		min1 = -20.0;	//lower limit 
+		step1 = 10.0;	//setep size
+		max1 = 100.0;	//upper limit
+
+		celsius1 = min1;
+
+		printf("   (C)\t (F)\n");	//header
+		while (celsius1 <= max1)
+		{
+			fahr1 = concetrCtoF(celsius1);
+			printf("%6.0f \t %3.1f\n", celsius1, fahr1);
+
+			celsius1 = celsius1 + step1;
+		}
+		//getchar();
+	}
+	/********************END function () **********************/
+
+	int concetrCtoF(int celsius1)
+	{
+		int fahr1;
+		fahr1 = (9.0 / 5.0 * celsius1) + 32.0;
+		return fahr1;
+	}
+	/********************END function () **********************/
+
+/******************** Reverses input line at a time ********************/
+void zadacha19()
+{
+	char line[1000];
+	char templine[1000];
+	int linelenght = 0;
 	
-	double fahr, celsius;
-	float min, step, max;
+	printf("write youre line:\n");
+	fgets(line, sizeof line, stdin);
 
-	min = 0.0;	//lower limit 
-	step = 20.0;	//setep size
-	max = 300.0;	//upper limit
-
-	fahr = min;
-
-	printf(" (F)\t   (C)\n");	//header
-	while (fahr <= max)
+	int i = 0;
+	while (line[i] != '\0')
 	{
-
-		celsius = (fahr);
-		printf("%3.0f \t %6.1f\n", fahr, celsius);
-		fahr = fahr + step;
-		//	celsius = (5.0 / 9.0) * (fahr - 32.0);
-		//printf("%3.0f \t %6.1f\n", fahr, celsius);
-		//	fahr = fahr + step;
+		//printf("%d\n", line[i]);
+		if ((line[i] != '\n') && (line[i] != '\t') && (line[i] != ' '))
+		{
+			templine[linelenght] = line[i];
+			linelenght++;
+		}
+		else
+		{
+			//printf("\n%d\t test\n", linelenght);
+			while (linelenght > 0)
+			{
+				//printf("\%d\t test\n", linelenght);
+									linelenght--;
+				//	printf("\t%d test\t", linelenght);
+				char tempchar;
+				tempchar = char(templine[linelenght]);
+				printf("%c", templine[linelenght]);
+				//			linelenght--;
+				if (linelenght == 0)
+				{
+					printf("\n");
+				}
+			}
+		}
+		i++;
 	}
 	//getchar();
 }
-int concetrFtoC(int fahr)
-{
-	int celsius;
-	celsius = (5.0 / 9.0) * (fahr - 32.0);
-	return celsius;
-
-}
-
-void zadacha4sub()
-{
-	double fahr1, celsius1;
-	float min1, step1, max1;
-
-	min1 = -20.0;	//lower limit 
-	step1 = 10.0;	//setep size
-	max1 = 100.0;	//upper limit
-
-	celsius1 = min1;
-
-	printf("   (C)\t (F)\n");	//header
-	while (celsius1 <= max1)
-	{
-		fahr1 = concetrCtoF(celsius1);
-		printf("%6.0f \t %3.1f\n", celsius1, fahr1);
-
-		celsius1 = celsius1 + step1;
-	}
-	//getchar();
-}
-
-int concetrCtoF(int celsius1)
-{
-	int fahr1;
-	fahr1 = (9.0 / 5.0 * celsius1) + 32.0;
-	return fahr1;
-}
-
+/********************END function (Reverses input line at a time) **********************/
