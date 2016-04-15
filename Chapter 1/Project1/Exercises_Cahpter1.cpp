@@ -9,7 +9,12 @@ void zadacha12();	// Counting words
 void zadacha13();	// Histogram
 void zadacha14();	// Histogram based on different simbols
 void zadacha15();	// show symbol
-int zadacha15sub(double );
+	void zadacha3sub();
+		int concetrFtoC(int);
+	void zadacha4sub();
+		int concetrCtoF(int);
+//void zadacha19();	// 
+
 
 int main()
 {
@@ -72,19 +77,19 @@ int main()
 
 		};
 
-//		printf("Vie izbrahte zadacha: ", Exercise ,"/n");
-		/*
-		char temp[1];
 		do
 		{
-			//temp[0] = NULL;
-			printf("Iskate lid a prodyljite s testvaneto na zadachite: (Y/N)");
-			//fgets(temp ,sizeof testing, stdin);
-			//testing = temp[0];
+			while (getchar() != '\n');
+			printf("Do you want to continue testing: (Y/N)\n");
+			testing = getchar();
+			if (!(((testing - '0') == 'Y') || ((testing - '0') == 'y') || ((testing - '0') == 'N') || ((testing - '0') == 'n')))
+			{
+				printf("!!!...Invalid input...!!!\n\n");
+			}
 		}
-		while(testing != 'Y' || testing != 'y' || testing != 'N' || testing != 'n');
-		*/
-		testing = 'N';
+		while(((testing - '0')== 'Y' )|| ((testing - '0') == 'y'));
+	
+		//testing = 'N';
 		getchar();
 	}
 
@@ -101,7 +106,7 @@ void zadacha1()
 {
 	printf("!!!!!Hello ");
 	printf("world!!!!! :) \n");
-	getchar();
+	printf("Press any key to continue ... :) \n");
 }
 
 void zadacha3()
@@ -277,35 +282,32 @@ void zadacha14()
 
 void zadacha15()
 {
-
-	void zadacha3sub();
-	void zadacha4sub();
-
 	char TemperatureType;
-	printf("Please couse which from which you want to convert ->\n");	//header
-	printf("C to F type ->'C' \n");
-	printf("F to C type ->'F' \n");
-	TemperatureType = getchar();
-
-	switch (TemperatureType)
+	do
 	{
-	case 'C':
-		zadacha4sub();
-		break;
-	case 'F':
-		zadacha3sub();
-		break;
-	default:
-		printf("!!!Incorrect input.!!! \n");
-		break;
-	}
+		printf("Please couse which from which you want to convert ->\n");	//header
+		printf("C to F type ->'C' \n");
+		printf("F to C type ->'F' \n");
+		TemperatureType = getchar();
 
+		switch (TemperatureType)
+		{
+		case 'C':
+			zadacha4sub();
+			break;
+		case 'F':
+			zadacha3sub();
+			break;
+		default:
+			printf("!!!Incorrect input.!!! \n");
+			while (getchar() != '\n');
+		}
+	}
 	while (getchar() != '\n');
-	getchar();
 }
 void zadacha3sub()
 {	
-	int concetrFtoC(int);
+	
 	double fahr, celsius;
 	float min, step, max;
 
@@ -338,7 +340,6 @@ int concetrFtoC(int fahr)
 
 void zadacha4sub()
 {
-	int concetrCtoF(int);
 	double fahr1, celsius1;
 	float min1, step1, max1;
 
