@@ -1,0 +1,4 @@
+﻿  Ex_3B_testing.cpp
+c:\users\user\documents\github\datext\testing\project_ex3b\project_ex3b\ex_3b_testing.cpp(101): warning C4715: 'apply': not all control paths return a value
+  Project_Ex3B.vcxproj -> C:\Users\User\Documents\GitHub\Datext\Testing\Project_Ex3B\Debug\Project_Ex3B.exe
+  Project_Ex3B.vcxproj -> C:\Users\User\Documents\GitHub\Datext\Testing\Project_Ex3B\Debug\Project_Ex3B.pdb (Partial PDB)

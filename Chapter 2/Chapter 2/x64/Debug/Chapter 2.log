@@ -1,6 +1,6 @@
 ﻿  Chapter_2.cpp
-c:\users\dsdfh\documents\github\datext-chapter-new\datext-chapter-1\chapter 2\chapter 2\chapter_2.cpp(67): warning C4101: 'c': unreferenced local variable
-c:\users\dsdfh\documents\github\datext-chapter-new\datext-chapter-1\chapter 2\chapter 2\chapter_2.cpp(214): warning C4129: '*': unrecognized character escape sequence
-c:\users\dsdfh\documents\github\datext-chapter-new\datext-chapter-1\chapter 2\chapter 2\chapter_2.cpp(216): warning C4129: 'h': unrecognized character escape sequence
-  Chapter 2.vcxproj -> C:\Users\dsdfh\Documents\GitHub\Datext-Chapter-new\Datext-Chapter-1\Chapter 2\x64\Debug\Chapter 2.exe
-  Chapter 2.vcxproj -> C:\Users\dsdfh\Documents\GitHub\Datext-Chapter-new\Datext-Chapter-1\Chapter 2\x64\Debug\Chapter 2.pdb (Partial PDB)
+c:\users\user\documents\github\datext\chapter 2\chapter 2\chapter_2.cpp(86): warning C4101: 'c': unreferenced local variable
+c:\users\user\documents\github\datext\chapter 2\chapter 2\chapter_2.cpp(240): warning C4129: '*': unrecognized character escape sequence
+c:\users\user\documents\github\datext\chapter 2\chapter 2\chapter_2.cpp(242): warning C4129: 'h': unrecognized character escape sequence
+  Chapter 2.vcxproj -> C:\Users\User\Documents\GitHub\Datext\Chapter 2\x64\Debug\Chapter 2.exe
+  Chapter 2.vcxproj -> C:\Users\User\Documents\GitHub\Datext\Chapter 2\x64\Debug\Chapter 2.pdb (Partial PDB)

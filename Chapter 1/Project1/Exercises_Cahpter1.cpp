@@ -14,7 +14,7 @@ void zadacha15();	// Fahrenheit to Celsius conversion - caling a function for co
 	void zadacha4sub();				//in :zadacha 15
 		int concetrCtoF(int);		//*******************
 void zadacha19();	//Reverses input line at a time
-
+	void reverse(char []); //Reverses line
 
 
 int main()
@@ -397,12 +397,18 @@ void zadacha19()
 	char line[1000];
 	char templine[1000];
 	int linelenght = 0;
-	
-	printf("write youre line:\n");
-	fgets(line, sizeof line, stdin);
 
-	int i = 0;
-	while (line[i] != '\0')
+	//printf("write youre line:\n");
+	fgets(line, sizeof line, stdin);
+	//printf("current line :\n");
+	//printf(line);
+	//printf("\n");
+
+
+
+
+
+	for (int i = 0; line[i] != '\0'; i++)
 	{
 		//printf("%d\n", line[i]);
 		if ((line[i] != '\n') && (line[i] != '\t') && (line[i] != ' '))
@@ -410,26 +416,95 @@ void zadacha19()
 			templine[linelenght] = line[i];
 			linelenght++;
 		}
-		else
+		else if (templine[0] != '\0')
 		{
-			//printf("\n%d\t test\n", linelenght);
-			while (linelenght > 0)
-			{
-				//printf("\%d\t test\n", linelenght);
-									linelenght--;
-				//	printf("\t%d test\t", linelenght);
-				char tempchar;
-				tempchar = char(templine[linelenght]);
-				printf("%c", templine[linelenght]);
-				//			linelenght--;
-				if (linelenght == 0)
-				{
-					printf("\n");
-				}
-			}
+			templine[linelenght] = '\n';
+			templine[linelenght + 1] = '\0';
+			reverse(templine);
+			printf(templine);
+			//printf("\n");
+			linelenght = 0;
+			templine[0] = '\0';
 		}
-		i++;
 	}
-	//getchar();
+
+	/*
+	reverse(line);
+
+	printf("new line :\n");
+	printf(line);
+	printf("\n");*/
+
+
+
+
+	/*
+	int i = 0;
+	while (line[i] != '\0')
+	{
+	//printf("%d\n", line[i]);
+	if ((line[i] != '\n') && (line[i] != '\t')&&(line[i] != ' '))
+	{
+	templine[linelenght] = line[i];
+	linelenght++;
+	}
+	else
+	{
+	//printf("\n%d\t test\n", linelenght);
+	while (linelenght > 0)
+	{
+	//printf("\%d\t test\n", linelenght);
+
+	linelenght--;
+	//	printf("\t%d test\t", linelenght);
+	char tempchar;
+	tempchar = char(templine[linelenght]);
+	printf("%c", templine[linelenght]);
+	//	linelenght--;
+	if (linelenght == 0)
+	{
+	printf("\n");
+	}
+	}
+	}
+	i++;
+	}
+	*/
+	getchar();
 }
 /********************END function (Reverses input line at a time) **********************/
+
+/******************** Reverses line **********************/
+void reverse(char s[])
+{
+	//char templine[1000];
+	char temp;
+	int i = 0;
+	while (s[i] != '\n')
+		++i;
+	/*
+	printf("new line :\n");
+	printf(s);
+	printf("\n");
+	*/
+	int j = 0;
+	while (i >j)
+	{
+
+		i--;
+		//printf("\ni=%d ",i);
+		//printf("\n s[%d]=%c ", j, s[j]);
+		temp = s[j];
+		s[j] = s[i];
+		s[i] = temp;
+		//printf("\n s[%d]=%c\n", j, s[j]);
+		j++;
+
+	}
+	/*
+	printf("new line :\n");
+	printf(s);
+	printf("\n");
+	*/
+}
+/********************END function (Reverses line) **********************/

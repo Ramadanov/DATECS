@@ -1,8 +1,10 @@
 #include <stdio.h>
 
 //optional scenarios:
-void zadacha2_2(); //  Using 'OR', 'AND', 'NOT' instead of '||', '&&', '!='
-void zadacha2_3();
+void zadacha2_2();	//  Using 'OR', 'AND', 'NOT' instead of '||', '&&', '!='
+void zadacha2_3();	//	Hexadecimal converted to decimal
+void zadacha2_4();	//	Squeeze
+	void squeezes(char[], char[]);
 
 int hotoi(char[], int);
 
@@ -17,8 +19,8 @@ int main()
 	{
 		printf("Please choose one of the optional scenarios: \n");
 		printf("\t*  1 * - Using something else instead of '||', '&&'  \n");
-		printf("\t*  2 * -  \n");
-//		printf("\t*  3 * - \n");
+		printf("\t*  2 * - Hexadecimal converted to decimal \n");
+		printf("\t*  3 * - Squeeze S1 from S2\n");
 //		printf("\t*  4 * - \n");
 //		printf("\t*  5 * - \n");
 //		printf("\t*  6 * - \n");
@@ -29,15 +31,18 @@ int main()
 		switch (Exercise)
 		{
 			case '1':
+				while (getchar() != '\n');
 				zadacha2_2();
 				break;
 			case '2':
-				zadacha2_3();
+				while (getchar() != '\n');
+				zadacha2_3(); // Hexadecimal converted to decimal
 				break;
-			/*case '3':
-				zadacha4();
+			case '3':
+				while (getchar() != '\n');
+				zadacha2_4();
 				break;
-			case '4':
+			/*case '4':
 				zadacha6();
 				break;
 			case '5':
@@ -51,15 +56,29 @@ int main()
 				break;
 				*/
 			}
-		char testing = 'N';
-		break;
-		}
-	getchar();
+		while (getchar() != '\n');
+		printf("Press any key to continue ... :) \n");
+		getchar();
+		do
+		{
+			while (getchar() != '\n');
+			printf("Do you want to continue testing: (Y/N)\n");
+			testing = getchar();
+			if (!(((testing - '0') == 'Y') || ((testing - '0') == 'y') || ((testing - '0') == 'N') || ((testing - '0') == 'n')))
+			{
+				printf("!!!...Invalid input...!!!\n\n");
+			}
+		} while (((testing - '0') == 'Y') || ((testing - '0') == 'y'));
+
+		//testing = 'N';
+		//getchar();
+	}
+	//getchar();
 
 	return 0;	
 }
 
-
+/***********************Function **************************/
 void zadacha2_2()
 {
 
@@ -141,10 +160,14 @@ void zadacha2_2()
 	//***********************************************************
 
 
-	getchar();
+	//getchar();
 }
+/***********************END Function **************************/
 
-void zadacha2_3()
+
+
+/***********************Function **************************/
+void zadacha2_3()// Hexadecimal converted to decimal
 {
 	char hexadec[100];
 	//	char hexadecreverse[100];
@@ -158,6 +181,9 @@ void zadacha2_3()
 	printf("\nConverted to decimal:\t%d\n", fin_dec);
 
 }
+/***********************END Function **************************/
+
+/***********************Function **************************/
 int hotoi(char hexadec[], int size)
 {
 	int dec_converted = 0;
@@ -219,3 +245,67 @@ int hotoi(char hexadec[], int size)
 
 	return dec_converted;
 }
+/***********************END Function **************************/
+
+/***********************Function **************************/
+void zadacha2_4()
+{
+	int const lenght = 100;
+	char str1[lenght];
+	char str2[lenght];
+	printf("Input first string :\n");
+	fgets(str1, sizeof str1, stdin);
+	//char c = 'a';
+
+
+	printf("input second string :\n");
+	fgets(str2, sizeof str2, stdin);
+
+	squeezes(str1, str2); //
+
+	printf("\n first string before: ");
+	for (int i = 0; str1[i] != '\0'; i++)
+	{
+		printf("%c", str1[i]);
+	}
+	printf("\n");
+
+	//squeezes(s1, c);
+
+
+
+
+	printf("\n first after after:");
+	for (int i = 0; str1[i] != '\0'; i++)
+	{
+		printf("%c", str1[i]);
+	}
+	printf("\n");
+	getchar();
+
+}
+/***********************END Function **************************/
+
+
+/***********************Function **************************/
+void squeezes(char str1[], char str2[])
+{
+
+
+	int i, j;
+
+	for (int k = 0; str2[k] != '\0'; k++)
+	{
+		for (i = j = 0; str1[i] != '\0'; i++)
+		{
+			if (str1[i] != str2[k])
+			{
+				str1[j++] = str1[i];
+			}
+		}
+
+		str1[j] = '\0';
+	}
+}
+
+/***********************END Function **************************/
