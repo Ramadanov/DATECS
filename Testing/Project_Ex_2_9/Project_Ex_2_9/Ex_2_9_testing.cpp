@@ -5,21 +5,26 @@ Use this observation to write a faster version of bitcount.*/
 
 int bitcount(unsigned);
 int bitcount_new(unsigned);
-int hotoi(char[], int);
+int hotoi(char[]);
+int validh(char[]);
 
 int main()
 {	
 	
 
-	char hexadec[100];
+	char hexadec[9];
 	printf("Plese input numeric value:");
 	unsigned int n1, n2, n;
 	//printf("%d\n", n);
 
-	printf("Enter Your Hexadecimal:\t");
-	fgets(hexadec, sizeof hexadec, stdin);
+	do
+	{
+		printf("Enter Your Hexadecimal:\t");
+		fgets(hexadec, sizeof hexadec, stdin);
+	}
+	while (!(validh(hexadec)));
 
-	n = hotoi(hexadec, sizeof hexadec);
+	n = hotoi(hexadec);
 
 	//n &= (n - 1);
 
@@ -37,7 +42,7 @@ int main()
 }
 
 
-int bitcount(unsigned x)
+int bitcount(unsigned int x)
 {
 	int b, bitcount=0 ;
 	for (b = 0; x != 0; x >>= 1)
@@ -52,7 +57,7 @@ int bitcount(unsigned x)
 	return b;
 }
 
-int bitcount_new(unsigned x)
+int bitcount_new(unsigned int x)
 {
 	int b;
 	for (b = 0; x != 0; x >>= 1)
@@ -64,68 +69,84 @@ int bitcount_new(unsigned x)
 	return b;
 }
 
-int hotoi(char hexadec[], int size)
+int validh(char hexadec[]) //check for valid hexadecimal
+{
+	bool valid = true;
+
+	int i = 0;
+	if (hexadec[0] == '0')
+	{
+		if ((hexadec[1] == 'x') || (hexadec[1] == 'X'))
+		{
+			i += 2;
+		}
+	}
+	for (;hexadec[i] != '\n'; i++)
+	{
+		if ((hexadec[i] < 48) ||
+			((hexadec[i] > 57) && (hexadec[i]<64)) ||
+			((hexadec[i]>70) && (hexadec[i] < 97)) ||
+			(hexadec[i] > 102))
+		{
+			printf("Bad input - not hexadecimal!\n\n");
+			valid = false;
+			return valid;
+		}
+	}
+	return valid;
+}
+
+int hotoi(char hexadec[])
 {
 	int dec_converted = 0;
-
-	//printf("\size:\t%d\n", size);
-	for (int i = 0; (i < (size) && hexadec[i] != '\n' && hexadec[i] != '\0'); i++)
+	int i = 0;
+	if (hexadec[0] == '0')
 	{
-		if (hexadec[0] == '0')
+		if ((hexadec[1] == 'x') || (hexadec[1] == 'X'))
 		{
-			i++;
-			if (hexadec[1] == 'x')
-			{
-				i++;
-			}
+			i += 2;
 		}
-		//printf("\i:\t%d\n", i);
-		//printf("\hexadec[i]:\t%d\n", hexadec[i]);
-		if ((hexadec[i] == 'a') || (hexadec[i] == 'A'))
-		{
-			//printf("\A\t\n");
-			dec_converted = (dec_converted + 10) * 16;
-			//printf("\dec_converted   :\t%d\n", dec_converted);
-		}
-		else if ((hexadec[i] == 'b') || (hexadec[i] == 'B'))
-		{
-			dec_converted = (dec_converted + 11) * 16;
-			//printf("\dec_converted   :\t%d\n", dec_converted);
-		}
-		else if ((hexadec[i] == 'c') || (hexadec[i] == 'C'))
-		{
-			dec_converted = (dec_converted + 12) * 16;
-			//printf("\dec_converted   :\t%d\n", dec_converted);
-		}
-		else if ((hexadec[i] == 'd') || (hexadec[i] == 'D'))
-		{
-			dec_converted = (dec_converted + 13) * 16;
-			//printf("\dec_converted   :\t%d\n", dec_converted);
-		}
-		else if ((hexadec[i] == 'e') || (hexadec[i] == 'E'))
-		{
-			dec_converted = (dec_converted + 14) * 16;
-			//printf("\dec_converted   :\t%d\n", dec_converted);
-		}
-		else if ((hexadec[i] == 'f') || (hexadec[i] == 'F'))
-		{
-			dec_converted = (dec_converted + 15) * 16;
-			//printf("\dec_converted   :\t%d\n", dec_converted);
-		}
-		else if (hexadec[i] == '0' || hexadec[i] == '1' || hexadec[i] == '2' || hexadec[i] == '3' || hexadec[i] == '4' || hexadec[i] == '5' || hexadec[i] == '6' || hexadec[i] == '7' || hexadec[i] == '8' || hexadec[i] == '9')
-		{
-			dec_converted = (dec_converted + (hexadec[i] - '0')) * 16;
-			//printf("\dec_converted   :\t%d\n", dec_converted);
-		}
-		else
-		{
-			printf("\*%c: -> Is not a valid HEX so it won't be counted!!!!!!!!!!!!!!!!!\n", hexadec[i]);
-		}
-		printf("\hexadec[%d]:\t%c\n", i, hexadec[i]);
 	}
-	dec_converted = dec_converted / 16;
+	//printf("\size:\t%d\n", size);
 
-	//printf("\nConverted to decimal:\t%d\n", dec_converted);
+	while (hexadec[i] != '\n')
+	{
+
+		switch (hexadec[i])
+		{
+		case 'A':
+		case 'a':
+			dec_converted = (dec_converted + 10) * 16;
+			break;
+		case 'B':
+		case 'b':
+			dec_converted = (dec_converted + 11) * 16;
+			break;
+		case 'C':
+		case 'c':
+			dec_converted = (dec_converted + 12) * 16;
+			break;
+		case 'D':
+		case 'd':
+			dec_converted = (dec_converted + 13) * 16;
+			break;
+		case 'E':
+		case 'e':
+			dec_converted = (dec_converted + 14) * 16;
+			break;
+		case 'F':
+		case 'f':
+			dec_converted = (dec_converted + 15) * 16;
+			break;
+		default:
+			dec_converted = (dec_converted + (hexadec[i] - '0')) * 16;
+		}
+		i++;
+	}
+
+	dec_converted /= 16;
+
+
 
 	return dec_converted;
 }

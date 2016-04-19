@@ -1,4 +1,7 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Project2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Ex_2_4_test.cpp
-  Project2.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Project_Ex_2_4\Debug\EX_2_4.exe
-  Project2.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Project_Ex_2_4\Debug\EX_2_4.pdb (Partial PDB)
+c:\users\user\documents\github\datext\testing\project_ex_2_4\project2\ex_2_4_test.cpp(13): warning C4101: 'str3': unreferenced local variable
+c:\users\user\documents\github\datext\testing\project_ex_2_4\project2\ex_2_4_test.cpp(65): warning C4101: 'j': unreferenced local variable
+c:\users\user\documents\github\datext\testing\project_ex_2_4\project2\ex_2_4_test.cpp(93): warning C4101: 'j': unreferenced local variable
+  Project2.vcxproj -> C:\Users\User\Documents\GitHub\Datext\Testing\Project_EX_2_4\Debug\EX_2_4.exe
+  Project2.vcxproj -> C:\Users\User\Documents\GitHub\Datext\Testing\Project_EX_2_4\Debug\EX_2_4.pdb (Partial PDB)

@@ -3,15 +3,18 @@
 //optional scenarios:
 void zadacha2_2();	//  Using 'OR', 'AND', 'NOT' instead of '||', '&&', '!='
 void zadacha2_3();	//	Hexadecimal converted to decimal
+int validh(char[]); //check for valid hexadecimal
+	int hotoi(char[]); //convert from string to hexadecimal
 void zadacha2_4();	//	Squeeze
-	void squeezes(char[], char[]);
+	void squeezes_2(char[], char[]); //Squeeze in s1
+	void squeezes_3(char[], char[], char[]); // Squeeze in third string s3
 void zadacha2_5();  
 	int Chech_for_character(char[], char[]);// check for symbols in s1 from s2
-void zadacha2_9();
-	int bitcount(unsigned int);
-	int bitcount_new(unsigned int);
+void zadacha2_9();	//	Alternate version for bitcount
+	int bitcount(unsigned int); //old version of bit count
+	int bitcount_new(unsigned int); //new version of bitcount
 
-int hotoi(char[], int);
+
 
 
 int main()
@@ -21,13 +24,13 @@ int main()
 		
 	char testing = 'Y';
 	while (testing == 'Y' || testing == 'y')
-	{
+	{	
 		printf("Please choose one of the optional scenarios: \n");
 		printf("\t*  1 * - Using something else instead of '||', '&&'  \n");
 		printf("\t*  2 * - Hexadecimal converted to decimal \n");
 		printf("\t*  3 * - Squeeze S1 from S2\n");
-		printf("\t*  4 * - check for symbols in s1 from s2\n");
-		printf("\t*  5 * - \n");
+		printf("\t*  4 * - Check for symbols in s1 from s2\n");
+		printf("\t*  5 * - Alternate version for bitcount\n");
 	
 
 		Exercise = getchar();
@@ -56,19 +59,15 @@ int main()
 				break;
 	
 			}
-		while (getchar() != '\n');
+		
 		printf("Press any key to continue ... :) \n");
-		getchar();
+		while (getchar() != '\n');
 		do
 		{
-			while (getchar() != '\n');
-			printf("Do you want to continue testing: (Y/N)\n");
+			printf("Do you want to continue: 'Y' or 'y' and 'N' or 'n':\t");
 			testing = getchar();
-			if (!(((testing - '0') == 'Y') || ((testing - '0') == 'y') || ((testing - '0') == 'N') || ((testing - '0') == 'n')))
-			{
-				printf("!!!...Invalid input...!!!\n\n");
-			}
-		} while (((testing - '0') == 'Y') || ((testing - '0') == 'y'));
+			while (getchar() != '\n');
+		} while ((testing != 'Y') && (testing != 'N')&& (testing != 'y') && (testing != 'n'));
 
 		//testing = 'N';
 		//getchar();
@@ -169,79 +168,108 @@ void zadacha2_2()
 /***********************Function **************************/
 void zadacha2_3()// Hexadecimal converted to decimal
 {
-	char hexadec[100];
-	//	char hexadecreverse[100];
+	char hexadec[9];
 	int fin_dec = 0, count = 0;
+	do
+	{
+		printf("Enter Your Hexadecimal:\t");
+		fgets(hexadec, sizeof hexadec, stdin);
+	}
 
-	printf("Enter Your Hexadecimal:\t");
-	fgets(hexadec, sizeof hexadec, stdin);
+	while (!(validh(hexadec)));
+	//printf("\n%d", validh(hexadec));
+	//printf("%c\n", hexadec[i]);
 
-	fin_dec = hotoi(hexadec, 100);
+
+	fin_dec = hotoi(hexadec);
 
 	printf("\nConverted to decimal:\t%d\n", fin_dec);
 
 }
 /***********************END Function **************************/
 
+/*********************** Function **************************/
+int validh(char hexadec[]) //check for valid hexadecimal
+{
+	bool valid = true;
+
+	int i = 0;
+	if (hexadec[0] == '0')
+	{
+		if ((hexadec[1] == 'x') || (hexadec[1] == 'X'))
+		{
+			i += 2;
+		}
+	}
+	for (;hexadec[i] != '\n'; i++)
+	{
+		if ((hexadec[i] < 48) ||
+			((hexadec[i] > 57) && (hexadec[i]<64)) ||
+			((hexadec[i]>70) && (hexadec[i] < 97)) ||
+			(hexadec[i] > 102))
+		{
+			printf("Bad input - not hexadecimal!\n\n");
+			valid = false;
+			return valid;
+		}
+	}
+	return valid;
+}
+/***********************END Function **************************/
+
+
 /***********************Function **************************/
-int hotoi(char hexadec[], int size)
+int hotoi(char hexadec[])
 {
 	int dec_converted = 0;
-
-	//printf("\size:\t%d\n", size);
-	for (int i = 0; (i < (size) && hexadec[i] != '\n' && hexadec[i] != '\0'); i++)
+	int i = 0;
+	if (hexadec[0] == '0')
 	{
-		if (hexadec[0] == '0')
+		if ((hexadec[1] == 'x') || (hexadec[1] == 'X'))
 		{
-			i++;
-			if (hexadec[1] == 'x')
-			{
-				i++;
-			}
+			i += 2;
 		}
-		//printf("\i:\t%d\n", i);
-		//printf("\hexadec[i]:\t%d\n", hexadec[i]);
-		if ((hexadec[i] == 'a') || (hexadec[i] == 'A'))
+	}
+	//printf("\size:\t%d\n", size);
+
+	while (hexadec[i] != '\n')
+	{
+
+		switch (hexadec[i])
 		{
-			//printf("\A\t\n");
+		case 'A':
+		case 'a':
 			dec_converted = (dec_converted + 10) * 16;
-			//printf("\dec_converted   :\t%d\n", dec_converted);
-		}
-		else if ((hexadec[i] == 'b') || (hexadec[i] == 'B'))
-		{
+			break;
+		case 'B':
+		case 'b':
 			dec_converted = (dec_converted + 11) * 16;
-			//printf("\dec_converted   :\t%d\n", dec_converted);
-		}
-		else if ((hexadec[i] == 'c') || (hexadec[i] == 'C'))
-		{
+			break;
+		case 'C':
+		case 'c':
 			dec_converted = (dec_converted + 12) * 16;
-			//printf("\dec_converted   :\t%d\n", dec_converted);
-		}
-		else if ((hexadec[i] == 'd') || (hexadec[i] == 'D'))
-		{
+			break;
+		case 'D':
+		case 'd':
 			dec_converted = (dec_converted + 13) * 16;
-			//printf("\dec_converted   :\t%d\n", dec_converted);
-		}
-		else if ((hexadec[i] == 'e') || (hexadec[i] == 'E'))
-		{
+			break;
+		case 'E':
+		case 'e':
 			dec_converted = (dec_converted + 14) * 16;
-			//printf("\dec_converted   :\t%d\n", dec_converted);
-		}
-		else if ((hexadec[i] == 'f') || (hexadec[i] == 'F'))
-		{
+			break;
+		case 'F':
+		case 'f':
 			dec_converted = (dec_converted + 15) * 16;
-		}
-		else if (hexadec[i] == '0' || hexadec[i] == '1' || hexadec[i] == '2' || hexadec[i] == '3' || hexadec[i] == '4' || hexadec[i] == '5' || hexadec[i] == '6' || hexadec[i] == '7' || hexadec[i] == '8' || hexadec[i] == '9')
-		{
+			break;
+		default:
 			dec_converted = (dec_converted + (hexadec[i] - '0')) * 16;
 		}
-		else
-		{
-			printf("\*%c: -> Is not a valid HEX so it won't be counted!!!!!!!!!!!!!!!!!\n", hexadec[i]);
-		}
-		printf("\hexadec[%d]:\t%c\n", i, hexadec[i]);
+		i++;
 	}
-	dec_converted = dec_converted / 16;
+
+	dec_converted /= 16;
+
+
 
 	return dec_converted;
 }
@@ -253,59 +281,92 @@ void zadacha2_4()
 	int const lenght = 100;
 	char str1[lenght];
 	char str2[lenght];
+	char str3[lenght];
 	printf("Input first string :\n");
 	fgets(str1, sizeof str1, stdin);
 	//char c = 'a';
 
 
+
+
 	printf("input second string :\n");
 	fgets(str2, sizeof str2, stdin);
 
-	squeezes(str1, str2); //
-
 	printf("\n first string before: ");
-	for (int i = 0; str1[i] != '\0'; i++)
-	{
-		printf("%c", str1[i]);
-	}
+	printf(str1);
+
+
+	squeezes_3(str1, str2, str3);
+	//squeezes_2(str1, str2);
 	printf("\n");
 
-	//squeezes(s1, c);
-
-
-
-
-	printf("\n first after after:");
-	for (int i = 0; str1[i] != '\0'; i++)
-	{
-		printf("%c", str1[i]);
-	}
 	printf("\n");
-	getchar();
 
 }
 /***********************END Function **************************/
 
 
 /***********************Function **************************/
-void squeezes(char str1[], char str2[])
+void squeezes_2(char str1[], char str2[])
 {
-
-
-	int i, j;
-
-	for (int k = 0; str2[k] != '\0'; k++)
+	bool match = false;
+	int i = 0, j;
+	for (int k = 0; str1[k] != '\n'; k++)
 	{
-		for (i = j = 0; str1[i] != '\0'; i++)
+		for (int j = 0; str2[j] != '\n'; j++)
 		{
-			if (str1[i] != str2[k])
+			if (str1[k] == str2[j])
 			{
-				str1[j++] = str1[i];
+				match = true;
+				break;
 			}
 		}
 
-		str1[j] = '\0';
+		if (!(match))
+		{
+			str1[i++] = str1[k];
+			match = false;
+		}
+
 	}
+	str1[i++] = '\n';
+	str1[i] = '\0';
+	printf("\n first string after squeezes_2:\n ");
+	printf(str1);
+}
+/***********************END Function **************************/
+
+
+
+/*********************** Function **************************/
+void squeezes_3(char str1[], char str2[], char str3[])
+{
+	bool match = false;
+	int i = 0, j;
+	for (int k = 0; str1[k] != '\n'; k++)
+	{
+		for (int j = 0; str2[j] != '\n'; j++)
+		{
+			if (str1[k] == str2[j])
+			{
+				match = true;
+				break;
+			}
+		}
+
+		if (!(match))
+		{
+			str3[i++] = str1[k];
+		}
+		else
+		{
+			match = false;
+		}
+	}
+	str3[i++] = '\n';
+	str3[i] = '\0';
+	printf("\n third string after squeezes_3:\n ");
+	printf(str3);
 }
 
 /***********************END Function **************************/
@@ -372,24 +433,27 @@ int Chech_for_character(char s1[], char s2[])
 /*********************** zadacha2_5 **************************/
 void zadacha2_9()
 {
-	char hexadec[100];
+	char hexadec[9];
 	printf("Plese input numeric value:");
 	unsigned int n1, n2, n;
 	//printf("%d\n", n);
 
-	printf("Enter Your Hexadecimal:\t");
-	fgets(hexadec, sizeof hexadec, stdin);
+	do
+	{
+		printf("Enter Your Hexadecimal:\t");
+		fgets(hexadec, sizeof hexadec, stdin);
+	} while (!(validh(hexadec)));
 
-	n = hotoi(hexadec, sizeof hexadec);
+	n = hotoi(hexadec);
 
 	//n &= (n - 1);
 
 	n1 = bitcount(n);
-	printf("%d\n", n1);
+	printf("Number of bits: %d\n", n1);
 
 
 	n2 = bitcount_new(n);
-	printf("%d\n", n2);
+	printf("Number of bits: %d\n", n2);
 
 	while (getchar() != '\n'); //cleaning buffer :)
 
@@ -414,7 +478,7 @@ int bitcount(unsigned int x)
 /***********************END Function **************************/
 
 /*********************** bitcount_new **************************/
-int bitcount_new(unsigned x)
+int bitcount_new(unsigned int x)
 {
 	int b;
 	for (b = 0; x != 0; x >>= 1)

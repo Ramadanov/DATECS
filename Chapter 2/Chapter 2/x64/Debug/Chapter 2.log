@@ -1,7 +1,7 @@
 ﻿  Chapter_2.cpp
-c:\users\user\documents\github\datext\chapter 2\chapter 2\chapter_2.cpp(86): warning C4101: 'c': unreferenced local variable
-c:\users\user\documents\github\datext\chapter 2\chapter 2\chapter_2.cpp(240): warning C4129: '*': unrecognized character escape sequence
-c:\users\user\documents\github\datext\chapter 2\chapter 2\chapter_2.cpp(242): warning C4129: 'h': unrecognized character escape sequence
-c:\users\user\documents\github\datext\chapter 2\chapter 2\chapter_2.cpp(350): warning C4101: 'j': unreferenced local variable
+c:\users\user\documents\github\datext\chapter 2\chapter 2\chapter_2.cpp(85): warning C4101: 'c': unreferenced local variable
+c:\users\user\documents\github\datext\chapter 2\chapter 2\chapter_2.cpp(313): warning C4101: 'j': unreferenced local variable
+c:\users\user\documents\github\datext\chapter 2\chapter 2\chapter_2.cpp(345): warning C4101: 'j': unreferenced local variable
+c:\users\user\documents\github\datext\chapter 2\chapter 2\chapter_2.cpp(411): warning C4101: 'j': unreferenced local variable
   Chapter 2.vcxproj -> C:\Users\User\Documents\GitHub\Datext\Chapter 2\x64\Debug\Chapter 2.exe
   Chapter 2.vcxproj -> C:\Users\User\Documents\GitHub\Datext\Chapter 2\x64\Debug\Chapter 2.pdb (Partial PDB)
