@@ -14,54 +14,78 @@ Output: the result of the expression (op1 operation op2).
 //using namespace std;
 
 #include <stdio.h>
+#include <math.h> 
 
 //char getMenuChoice(const string MENU);
 //double apply(char operation, double op1, double op2);
 
 char getMenuChoice(char[]);
 double apply(char operation, double op1, double op2);
-
+int validd(char[]);
 double dd_converter(char[]); // converting sting to double
 
 int main()
 {
 	//*** ENTER YOUR OPENING OUTPUT STATEMENT(S) HERE
+	printf("Hi all!\ncs.calvin.edu/books/c++/engr-sci/LabExercises/Lab7/exercise.html\nwriten by Ramadanov :)\n");	//cout << "Now enter your operands: ";
 	char operation;
-	do {
-		char MENU[] = { "\nPlease enter:\n"
-			"\t+ - to perform addition;\n"
-			"\t- - to perform subtraction;\n"
-			"\t* - to perform multiplication;\n"
-			"\t/ - to perform division;\n"
-			"\t^ - to perform exponentiation;\n"
-			"--> " };
+	char clculate;
+	char MENU[] = { "\nPlease enter:\n"
+		"\t+ - to perform addition;\n"
+		"\t- - to perform subtraction;\n"
+		"\t* - to perform multiplication;\n"
+		"\t/ - to perform division;\n"
+		"\t^ - to perform exponentiation;\n"
+		"--> " };
+	do
+	{
+		do {
+			operation = getMenuChoice(MENU);
+			while (getchar() != '\n');
+		} while ((operation != '+') && (operation != '-') && (operation != '*') && (operation != '/') && (operation != '^'));
 
-		operation = getMenuChoice(MENU);
-		//while (getchar() != '\n');
-	} while ((operation !='+')&&(operation != '-')&&(operation != '*')&&(operation != '/')&&(operation != '^'));
+		//double op1, op2, result;
+		char op1_str[100], op2_str[100];
+		double op1, op2, result;
+		printf("Now enter your operands: \n");	//cout << "Now enter your operands: ";
+		//cin >> op1 >> op2;
+		do
+		{
+			op1_str[0] = '\0';
+			printf("Enter your first operand: \n");
+			fgets(op1_str, sizeof op1_str, stdin);
+			//while (getchar() != '\n');
+		} while (!(validd(op1_str)));
 
-	//double op1, op2, result;
-	char op1_str[100], op2_str[100];
-	double op1, op2, result;
-	printf("Now enter your operands: \n");	//cout << "Now enter your operands: ";
-	//cin >> op1 >> op2;
-	printf("Enter your first operand: \n");
-	while (getchar() != '\n');
-	fgets(op1_str, sizeof op1_str, stdin);
-	op1 = dd_converter(op1_str);
+		op1 = dd_converter(op1_str); // assert(cin.good()); //->bad inout - return error
 
-	printf("Enter your second operand: \n");
-	//while (getchar() != '\n');
-	fgets(op2_str, sizeof op2_str, stdin);
-	op2 = dd_converter(op2_str);	//assert(cin.good()); //->bad inout - return error
-	
-	printf("\n op1=%f op2=%f\n",op1, op2);
+		do
+		{
+			op2_str[0] = '\0';
+			printf("Enter your second operand: \n");
+			fgets(op2_str, sizeof op2_str, stdin);
+			//while (getchar() != '\n');
+
+		} while (!(validd(op2_str)));
+
+		op2 = dd_converter(op2_str);	//assert(cin.good()); //->bad inout - return error
+		printf("\n op1=%f op2=%f\n", op1, op2);
 
 
-	result = apply(operation, op1, op2);
+		result = apply(operation, op1, op2);
 
-	printf("The result is %f\n",result);	//cout << "The result is " << result << endl;
+		printf("The result is %f\n", result);	//cout << "The result is " << result << endl;
+		
+		do
+		{
+			printf("Do you want to continue: 'Y' 'N':\t");
+			clculate = getchar();
+			while (getchar() != '\n');
+		} while ((clculate != 'Y') && (clculate != 'N'));
+	}
+	while (clculate == 'Y');
 
+	printf("Press any key to continue.....\n");
 	getchar();
 }
 
@@ -95,9 +119,39 @@ double apply(char operation, double op1, double op2)
 	case '/':
 		return op1 / op2;
 		break;
+	case '^':
+		return pow(op1, op2);
+		break;
 	
 
 	}
+}
+int validd(char X [])
+{
+	int dot = 0;
+	bool valid = true;
+	//switch (A)
+	//{
+	//case 'd':
+		for (int i = 0; X[i] != '\n';i++)
+		{
+			if (!((X[i] > 47) && (X[i] < 58)))
+			{
+				if ((X[i] == '.') && (dot < 2))
+				{
+					dot++;
+				}
+				else
+				{
+					valid = false;
+					printf("\n!!!BAD input ... !!!\n");
+					printf("Plese enter your valuse as: '______.__' with numbers only!\n");
+					return valid;
+				}
+			}
+		}
+	//}
+	return valid;
 }
 
 double dd_converter(char STR[])
@@ -142,3 +196,15 @@ double dd_converter(char STR[])
 
 	return converted_result;
 }
+/*
+double expon(double X, double Y)
+{
+	bool sign = true;
+	int expo;
+	if (Y < 0)
+	{
+		sign = false;
+		Y = -Y;
+	}
+}
+*/
