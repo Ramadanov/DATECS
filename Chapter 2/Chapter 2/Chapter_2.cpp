@@ -5,6 +5,11 @@ void zadacha2_2();	//  Using 'OR', 'AND', 'NOT' instead of '||', '&&', '!='
 void zadacha2_3();	//	Hexadecimal converted to decimal
 void zadacha2_4();	//	Squeeze
 	void squeezes(char[], char[]);
+void zadacha2_5();  
+	int Chech_for_character(char[], char[]);// check for symbols in s1 from s2
+void zadacha2_9();
+	int bitcount(unsigned int);
+	int bitcount_new(unsigned int);
 
 int hotoi(char[], int);
 
@@ -21,10 +26,9 @@ int main()
 		printf("\t*  1 * - Using something else instead of '||', '&&'  \n");
 		printf("\t*  2 * - Hexadecimal converted to decimal \n");
 		printf("\t*  3 * - Squeeze S1 from S2\n");
-//		printf("\t*  4 * - \n");
-//		printf("\t*  5 * - \n");
-//		printf("\t*  6 * - \n");
-//	
+		printf("\t*  4 * - check for symbols in s1 from s2\n");
+		printf("\t*  5 * - \n");
+	
 
 		Exercise = getchar();
 	
@@ -32,7 +36,7 @@ int main()
 		{
 			case '1':
 				while (getchar() != '\n');
-				zadacha2_2();
+				zadacha2_2(); //Using something else instead of '||', '&&'  \n
 				break;
 			case '2':
 				while (getchar() != '\n');
@@ -40,21 +44,17 @@ int main()
 				break;
 			case '3':
 				while (getchar() != '\n');
-				zadacha2_4();
+				zadacha2_4(); //Squeeze S1 from S2
 				break;
-			/*case '4':
-				zadacha6();
+			case '4':
+				while (getchar() != '\n');
+				zadacha2_5(); //check for symbols in s1 from s2
 				break;
 			case '5':
-				zadacha12();
+				while (getchar() != '\n');
+				zadacha2_9();
 				break;
-			case '6':
-				zadacha13();
-				break;
-			case '7':
-				zadacha14();
-				break;
-				*/
+	
 			}
 		while (getchar() != '\n');
 		printf("Press any key to continue ... :) \n");
@@ -309,3 +309,121 @@ void squeezes(char str1[], char str2[])
 }
 
 /***********************END Function **************************/
+
+
+/*********************** Function **************************/
+
+void zadacha2_5()
+{
+	int const lenght = 100;
+	char s1[lenght];
+	char s2[lenght];
+	int char_position;
+	printf("Input first string :\n");
+	fgets(s1, sizeof s1, stdin);
+
+
+
+	printf("input second string :\n");
+	fgets(s2, sizeof s2, stdin);
+
+	char_position = Chech_for_character(s1, s2);
+	if (char_position == -1)
+	{
+		printf("First chracter that ocures from sreing S2 in String S1 ocures in \n\tposition: %d\n strings don't have same symbols.", char_position);
+	}
+	else
+	{
+		printf("First chracter that ocures from sreing S2 in String S1 ocures in \n\tposition: %d\n \tS1[%d] = %c", char_position, char_position, s1[char_position]);
+	}
+
+
+}
+/***********************END Function **************************/
+
+
+/*********************** Function **************************/
+int Chech_for_character(char s1[], char s2[])
+{
+
+	bool endloop = false;
+	int i, j;
+
+	for (int k = 0; (s2[k] != '\n'); k++) //&& (endloop == false)
+	{
+		for (i = 0; s1[i] != '\n'; i++)
+		{
+			if (s1[i] == s2[k])
+			{
+				return i;
+				//endloop = true;
+			}
+		}
+
+
+	}
+	return -1;
+}
+
+/***********************END Function **************************/
+
+
+
+/*********************** zadacha2_5 **************************/
+void zadacha2_9()
+{
+	char hexadec[100];
+	printf("Plese input numeric value:");
+	unsigned int n1, n2, n;
+	//printf("%d\n", n);
+
+	printf("Enter Your Hexadecimal:\t");
+	fgets(hexadec, sizeof hexadec, stdin);
+
+	n = hotoi(hexadec, sizeof hexadec);
+
+	//n &= (n - 1);
+
+	n1 = bitcount(n);
+	printf("%d\n", n1);
+
+
+	n2 = bitcount_new(n);
+	printf("%d\n", n2);
+
+	while (getchar() != '\n'); //cleaning buffer :)
+
+}
+/***********************END Function **************************/
+
+/*********************** bitcount **************************/
+int bitcount(unsigned int x)
+{
+	int b, bitcount = 0;
+	for (b = 0; x != 0; x >>= 1)
+	{
+		if (x & 01)
+		{
+			b++;
+		}
+		bitcount += 2;
+	}
+	printf("function 'bitcount()' iterations:%d\n", bitcount);
+	return b;
+}
+/***********************END Function **************************/
+
+/*********************** bitcount_new **************************/
+int bitcount_new(unsigned x)
+{
+	int b;
+	for (b = 0; x != 0; x >>= 1)
+	{
+		x &= (x - 1);
+		b++;
+	}
+	printf("function 'bitcount_new()' iterations:%d\n", b);
+	return b;
+}
+/***********************END Function (bitcount_new) **************************/
+

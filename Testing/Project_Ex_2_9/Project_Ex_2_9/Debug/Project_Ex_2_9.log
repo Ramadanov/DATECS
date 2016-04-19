@@ -1,5 +1,2 @@
-﻿  Ex_2_9_testing.cpp
-c:\users\user\documents\github\datext-chapter-1\testing\project_ex_2_9\project_ex_2_9\ex_2_9_testing.cpp(125): warning C4129: '*': unrecognized character escape sequence
-c:\users\user\documents\github\datext-chapter-1\testing\project_ex_2_9\project_ex_2_9\ex_2_9_testing.cpp(127): warning C4129: 'h': unrecognized character escape sequence
-  Project_Ex_2_9.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Project_Ex_2_9\Debug\Ex_2_9.exe
-  Project_Ex_2_9.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Project_Ex_2_9\Debug\Ex_2_9.pdb (Partial PDB)
+﻿  Project_Ex_2_9.vcxproj -> C:\Users\User\Documents\GitHub\Datext\Testing\Project_Ex_2_9\Debug\Ex_2_9.exe
+  Project_Ex_2_9.vcxproj -> C:\Users\User\Documents\GitHub\Datext\Testing\Project_Ex_2_9\Debug\Ex_2_9.pdb (Partial PDB)

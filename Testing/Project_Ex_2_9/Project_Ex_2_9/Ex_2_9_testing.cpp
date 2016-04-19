@@ -1,3 +1,6 @@
+/*In a two's complement number system, x &=(x-1) deletes the rightmost 1-bit in x. Explain why.
+Use this observation to write a faster version of bitcount.*/
+
 #include <stdio.h>
 
 int bitcount(unsigned);
@@ -21,11 +24,11 @@ int main()
 	//n &= (n - 1);
 
 	n1 = bitcount(n);
-	printf("%d\n", n1);
+	printf("Number of bits: %d\n", n1);
 
 
 	n2 = bitcount_new(n);
-	printf("%d\n", n2);
+	printf("Number of bits: %d\n", n2);
 	
 	while (getchar() != '\n'); //cleaning buffer :)
 		
@@ -43,7 +46,7 @@ int bitcount(unsigned x)
 		{
 			b++;
 		}
-		bitcount = +2;
+		bitcount += 2;
 	}
 	printf("function 'bitcount()' iterations:%d\n", bitcount);
 	return b;
@@ -51,18 +54,13 @@ int bitcount(unsigned x)
 
 int bitcount_new(unsigned x)
 {
-	int b, bitcount = 0;
-	bitcount = 0;
-	for (b = 0; x != 00; x >>= 1)
+	int b;
+	for (b = 0; x != 0; x >>= 1)
 	{
-		if (x != 00)
-		{
 			x &= (x - 1);
 			b++;
-		}
-		bitcount += 2;
 	}
-	printf("function 'bitcount_new()' iterations:%d\n", bitcount);
+	printf("function 'bitcount_new()' iterations:%d\n", b);
 	return b;
 }
 

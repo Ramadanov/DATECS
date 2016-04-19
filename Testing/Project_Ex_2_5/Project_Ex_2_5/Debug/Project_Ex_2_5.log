@@ -1,2 +1,4 @@
-﻿  Project_Ex_2_5.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Project_Ex_2_5\Debug\Ex_2_5.exe
-  Project_Ex_2_5.vcxproj -> C:\Users\User\Documents\GitHub\Datext-Chapter-1\Testing\Project_Ex_2_5\Debug\Ex_2_5.pdb (Partial PDB)
+﻿  Ex_2_5_testing.cpp
+c:\users\user\documents\github\datext\testing\project_ex_2_5\project_ex_2_5\ex_2_5_testing.cpp(52): warning C4101: 'j': unreferenced local variable
+  Project_Ex_2_5.vcxproj -> C:\Users\User\Documents\GitHub\Datext\Testing\Project_Ex_2_5\Debug\Ex_2_5.exe
+  Project_Ex_2_5.vcxproj -> C:\Users\User\Documents\GitHub\Datext\Testing\Project_Ex_2_5\Debug\Ex_2_5.pdb (Partial PDB)
