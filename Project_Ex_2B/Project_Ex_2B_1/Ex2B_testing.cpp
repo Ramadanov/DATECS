@@ -136,9 +136,8 @@ int checkParity(int x)
 {
 	//return (0|(x))?(1^(checkParity(x&(x - 1)))):0;
 
-	//x ^= x >> 16; //for 32 bits
-	//x ^= x >> 8;
-	
+	x ^= x >> 16; //for 32 bits
+	x ^= x >> 8;
 	x ^= x >> 4; //for 8 bits
 	x ^= x >> 2;
 	x ^= x >> 1;
