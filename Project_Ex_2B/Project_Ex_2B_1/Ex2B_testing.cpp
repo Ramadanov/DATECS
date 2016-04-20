@@ -9,32 +9,70 @@ int checkParity(int x);
 
 int main()
 {
-	unsigned int X =11;
-	unsigned char n = 3;
-	printf("\nOld value : %x\n", X);
-	showbits(X);
-	//Ex 2B1:
-	printf("\nEx 2B1 - setBit\n");
-	setBit(X, n);
+	unsigned int X = 8;
+	unsigned char n=2;
+	char Exercise;
 
-	//Ex 2B2:
-	printf("\nEx 2B2 - clearBit\n");
-	clearBit(X, n);
+	char testing = 'Y';
+	while (testing == 'Y' || testing == 'y')
+	{
+		printf("Please choose one of the optional scenarios: \n");
+		printf("\t*  1 * - setBit\n");
+		printf("\t*  2 * - clearBit\n");
+		printf("\t*  3 * - isPowerOfTwo\n");
+		printf("\t*  4 * - checkOneBitSet\n");
+		printf("\t*  5 * - checkParity\n");
 
-	//Ex 2B3:
-	printf("\nEx 2B3 - isPowerOfTwo\n");
-	printf("\n(isPowerOfTwo)\nX = %x\nis PowerOf Two?\nYES->(1);\nNO ->(0);\nRESULT: %d\n", X, isPowerOfTwo(X));
 
-	//Ex 2B4:
-	printf("Ex 2B4 - checkOneBitSet\n");
-	//isn't this the same function as power of 2?. 
-	printf("\n(checkOneBitSet)\nX = %x\nYES->(1);\nNO ->(0);\nRESULT: %d\n", X, isPowerOfTwo(X));
-	
-	//Ex 2B5:
-	printf("\nEx 2B5:\ncheckParity:\n%d\n", checkParity(X));
+		Exercise = getchar();
 
-	
-	
+		printf("\nOld value : %x\n", X);
+		showbits(X);
+		switch (Exercise)
+		{
+		case '1': //Ex 2B1:
+			while (getchar() != '\n');
+			printf("\nposition n=%d : \n", n);
+			printf("\nEx 2B1 - setBit\n");
+			setBit(X, n);
+			break;
+		case '2'://Ex 2B2:
+			while (getchar() != '\n');
+			printf("\nposition n=%d : \n", n);
+			printf("\nEx 2B2 - clearBit\n");
+			clearBit(X, n);
+			break;
+		case '3'://Ex 2B3:
+			while (getchar() != '\n');
+			printf("\nEx 2B3 - isPowerOfTwo\n");
+			printf("\n(isPowerOfTwo)\nX = %x\nis PowerOf Two?\nYES->(1);\nNO ->(0);\nRESULT: %d\n", X, isPowerOfTwo(X));
+			break;
+		case '4'://Ex 2B4:
+			while (getchar() != '\n');
+			printf("Ex 2B4 - checkOneBitSet\n");
+			//isn't this the same function as power of 2?. 
+			printf("\n(checkOneBitSet)\nX = %x\nYES->(1);\nNO ->(0);\nRESULT: %d\n", X, isPowerOfTwo(X));
+			break;
+		case '5'://Ex 2B5:
+			while (getchar() != '\n');
+			printf("\nEx 2B5:\ncheckParity:\n%d\n", checkParity(X));
+			break;
+
+		}
+
+		printf("Press any key to continue ... :) \n");
+		while (getchar() != '\n');
+		do
+		{
+			printf("Do you want to continue: 'Y' or 'y' and 'N' or 'n':\t");
+			testing = getchar();
+			while (getchar() != '\n');
+		} while ((testing != 'Y') && (testing != 'N') && (testing != 'y') && (testing != 'n'));
+
+		//testing = 'N';
+	}
+	//getchar();
+
 	//Ex 2B6:
 	printf("\nEx 2B6 swap\n");
 	int a = 5, b = 3;
@@ -96,5 +134,13 @@ void showbits(unsigned int x)
 
 int checkParity(int x)
 {
-	return (0|(x))?(1^(checkParity(x&(x - 1)))):0;
+	//return (0|(x))?(1^(checkParity(x&(x - 1)))):0;
+
+	//x ^= x >> 16; //for 32 bits
+	//x ^= x >> 8;
+	
+	x ^= x >> 4; //for 8 bits
+	x ^= x >> 2;
+	x ^= x >> 1;
+	return (x) & 1;
 }
