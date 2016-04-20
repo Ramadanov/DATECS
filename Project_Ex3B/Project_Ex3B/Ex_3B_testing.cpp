@@ -45,7 +45,7 @@ int main()
 		} while ((operation != '+') && (operation != '-') && (operation != '*') && (operation != '/') && (operation != '^'));
 
 		//double op1, op2, result;
-		char op1_str[100], op2_str[100];
+		char op1_str[20], op2_str[20];
 		double op1, op2, result;
 		printf("Now enter your operands: \n");	//cout << "Now enter your operands: ";
 		//cin >> op1 >> op2;
@@ -145,7 +145,7 @@ int validd(char X [])
 				{
 					valid = false;
 					printf("\n!!!BAD input ... !!!\n");
-					printf("Plese enter your valuse as: '______.__' with numbers only!\n");
+					printf("Plese enter your valuse as: '______.__' with digits only!\n");
 					return valid;
 				}
 			}
