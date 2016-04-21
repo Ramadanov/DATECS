@@ -4,22 +4,25 @@
 void squeezes(char[], char[]); //function for squeezin the string 
 void squeezes_2(char[], char[]);
 void squeezes_3(char[], char[], char[]);
-
+void squeezes_4(char[]);
 int main()
 {
-	int const lenght = 100;
+	int const lenght = 20;
 	char str1[lenght];
 	char str2[lenght];
 	char str3[lenght];
+	char c;
 	printf("Input first string :\n");
 	fgets(str1, sizeof str1, stdin);
-	//char c = 'a';
+
 	
 
 
 
 	printf("input second string :\n");
-	fgets(str2, sizeof str2, stdin);
+	while (c = getchar()!='\n')
+
+	//	fgets(str2, sizeof str2, stdin);
 
 	printf("\n first string before: ");
 	printf(str1);
@@ -115,4 +118,32 @@ void squeezes_3(char str1[], char str2[], char str3[])
 	str3[i] = '\0';
 	printf("\n third string after squeezes_3:\n ");
 	printf(str3);
+}
+
+void squeezes_4(char s1[],char c);
+{
+
+	bool match = false;
+	int i = 0, j;
+	for (int k = 0; str1[k] != '\n'; k++)
+	{
+		for (int j = 0; str2[j] != '\n'; j++)
+		{
+			if (str1[k] == str2[j])
+			{
+				match = true;
+				break;
+			}
+		}
+
+		if (!(match))
+		{
+			str1[i++] = str1[k];
+			match = false;
+		}
+
+	}
+	str1[i++] = '\n';
+	str1[i] = '\0';
+
 }
