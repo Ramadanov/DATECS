@@ -36,8 +36,8 @@ return pday;
 #include<stdio.h>
 #include <stdlib.h>
 
-int day_of_year(int year, int month, int day);
-void month_day(int year, int yearday, int *pmonth, int *pday);
+int day_of_year(int, int, int);
+void month_day(int, int, int *, int *);
 
 
 
@@ -51,21 +51,54 @@ int main()
 	int day;
 	int month;
 	int year;
+	int function_select;
 
-	printf("Please input year : \n");
-	scanf_s("%d",&year);
-	fseek(stdin, 0, SEEK_END);
-	printf("Please input month : ");
-	scanf_s("%d", &month);
-	fseek(stdin, 0, SEEK_END);
-	printf("Please input day : ");
-	scanf_s("%d", &day);
-	fseek(stdin, 0, SEEK_END);
 
-	printf("%d\n",day_of_year(year, month, day));
+	printf("Please select function : \n day_of_year -> 0\n month_day -> 1\n");
+	scanf_s("%d", &function_select);
+	switch (function_select)
+	{
+	case 0:
+		{
+			printf("Please input year : \n");
+			scanf_s("%d", &year);
+			fseek(stdin, 0, SEEK_END);
+
+			printf("Please input month : ");
+			scanf_s("%d", &month);
+			fseek(stdin, 0, SEEK_END);
+
+			printf("Please input day : ");
+			scanf_s("%d", &day);
+			fseek(stdin, 0, SEEK_END);
+
+			printf("%d\n", day_of_year(year, month, day));
+			break;
+		}
+
+	case 1:
+		{
+			int yearday = 0;
+
+			printf("Please input year : \n");
+			scanf_s("%d", &year);
+			fseek(stdin, 0, SEEK_END);
+
+			printf("Please input yearday : \n");
+			scanf_s("%d", &yearday);
+			fseek(stdin, 0, SEEK_END);
+
+			
+			month_day(year, yearday, &month, &day);
+			printf("Month: %d\n Day :%d\n", month, day);
+		}
+	}
 
 	
 
+	
+	
+	
 	getchar();
 
 
@@ -102,10 +135,17 @@ void month_day(int year, int yearday, int *pmonth, int *pday)
 
 	int i, leap;
 
-		leap = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+	leap = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+
+	if ((yearday < 1) || (yearday >365 + leap))
+	{
+		printf("ERROR!\nWrong input.\'yearday' should be between  1-%d\nPress any key to terminate...", (365 + leap));
+		exit(getchar());
+	}
 	for (i = 1; yearday>daytab[leap][i]; i++)
-		year -= daytab[leap][i];
+		yearday -= daytab[leap][i];
 
 	*pmonth = i;
 	*pday = yearday;
+
 }
