@@ -32,16 +32,20 @@ int main()
 	printf("Please input second string:\n");
 	fgets(str2, sizeof str2, stdin);
 	fseek(stdin, 0, SEEK_END);
+
+	int i = 0;
+
 	switch (funcselect)
 	{
 		case 'a':
 			do
 			{
 				printf("How much symbols you wan to change:\n");
-				scanf_s("%d\n", &n);
+				scanf_s("%d", &n);
 				fseek(stdin, 0, SEEK_END);
 			} while (!(n > 0));
 			// strncpy_s(str1, str2, n);
+			
 			strncpy_2(str1, str2, n, sizeof str1);
 			printf(str1);
 			break;
@@ -49,7 +53,7 @@ int main()
 			do
 			{
 				printf("How much symbols you wan to concatenate to first string:\n");
-				scanf_s("%d\n", &n);
+				scanf_s("%d", &n);
 				fseek(stdin, 0, SEEK_END);
 			} while (!(n > 0));
 			//strncat_s(str1, str2, n);
@@ -60,7 +64,7 @@ int main()
 			do
 			{
 				printf("How till which symbol should compare:\n");
-				scanf_s("%d\n", &n);
+				scanf_s("%d", &n);
 				fseek(stdin, 0, SEEK_END);
 			} while (!(n > 0));
 			//ret = strncmp(str1, str2, n);

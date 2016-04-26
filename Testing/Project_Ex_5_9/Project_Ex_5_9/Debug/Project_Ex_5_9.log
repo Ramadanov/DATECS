@@ -1,5 +1,5 @@
 ﻿  Ex_5_9_testing.cpp
-c:\users\user\documents\github\datecs\testing\project_ex_5_9\project_ex_5_9\ex_5_9_testing.cpp(30): warning C4101: 'leap': unreferenced local variable
-c:\users\user\documents\github\datecs\testing\project_ex_5_9\project_ex_5_9\ex_5_9_testing.cpp(97): warning C4129: 'D': unrecognized character escape sequence
+c:\users\user\documents\github\datecs\testing\project_ex_5_9\project_ex_5_9\ex_5_9_testing.cpp(26): warning C4101: 'leap': unreferenced local variable
+c:\users\user\documents\github\datecs\testing\project_ex_5_9\project_ex_5_9\ex_5_9_testing.cpp(86): warning C4129: 'D': unrecognized character escape sequence
   Project_Ex_5_9.vcxproj -> C:\Users\User\Documents\GitHub\DATECS\Testing\Project_Ex_5_9\Debug\Project_Ex_5_9.exe
   Project_Ex_5_9.vcxproj -> C:\Users\User\Documents\GitHub\DATECS\Testing\Project_Ex_5_9\Debug\Project_Ex_5_9.pdb (Partial PDB)
