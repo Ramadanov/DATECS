@@ -29,13 +29,16 @@ int main()
 void expand(char s1[], char s2[])
 {
 	int i_check = 0; // [position for s2]
-
+	bool startup = false;
 	for (int i = 0; s1[i] != '\n'; i++)
 	{
 		if (s1[i] == '-')
 		{
-
-			if (s1[i - 1] < s1[i + 1])
+			if (!startup)
+			{
+				s2[i_check++] = s1[i];
+			}
+			else if (s1[i - 1] < s1[i + 1])
 			{
 				if (((s1[i - 1] > 47) && (s1[i + 1] < 58)) || ((s1[i - 1] > 64) && (s1[i + 1] < 91)) || ((s1[i - 1] > 96) && (s1[i + 1] < 123)))
 				{
@@ -63,6 +66,7 @@ void expand(char s1[], char s2[])
 		else
 			//if (s1[i-1] != '-')
 		{
+			startup = true;
 			s2[i_check++] = s1[i];
 		}
 	}

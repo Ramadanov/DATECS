@@ -37,12 +37,14 @@ int main()
 		}
 
 		printf("Press any key to continue ... :) \n");
-		while (getchar() != '\n');
+		//while (getchar() != '\n');
+		fseek(stdin, 0, SEEK_END);
 		do
 		{
 			printf("Do you want to continue: 'Y' or 'y' and 'N' or 'n':\t");
 			testing = getchar();
-			while (getchar() != '\n');
+			//while (getchar() != '\n');
+			fseek(stdin, 0, SEEK_END);
 		} while ((testing != 'Y') && (testing != 'N') && (testing != 'y') && (testing != 'n'));
 
 	}
@@ -66,14 +68,18 @@ expand(s1, s2);
 
 void expand(char s1[], char s2[])
 {
-	int i_check = 0; // [position for s2]
+	int i_check = 0;
+	bool startup = false;
 
 	for (int i = 0; s1[i] != '\n'; i++)
 	{
 		if (s1[i] == '-')
 		{
-
-			if (s1[i - 1] < s1[i + 1])
+			if (!startup)
+			{
+				s2[i_check++] = s1[i];
+			}
+			else if (s1[i - 1] < s1[i + 1])
 			{
 				if (((s1[i - 1] > 47) && (s1[i + 1] < 58)) || ((s1[i - 1] > 64) && (s1[i + 1] < 91)) || ((s1[i - 1] > 96) && (s1[i + 1] < 123)))
 				{
@@ -82,7 +88,6 @@ void expand(char s1[], char s2[])
 					{
 						s2[i_check] = i_1;
 					}
-
 					printf("\naz|AZ|09 complete list:\n");
 				}
 			}
@@ -93,14 +98,13 @@ void expand(char s1[], char s2[])
 				{
 					s2[i_check] = i_1;
 				}
-
 				printf("\nza|ZA|09 complete list\n");
 			}
-
 		}
 		else
-			//if (s1[i-1] != '-')
+		//if (s1[i-1] != '-')
 		{
+			startup = true;
 			s2[i_check++] = s1[i];
 		}
 	}
@@ -131,8 +135,8 @@ void zadacha3_6()
 void itoa_02(int n, char s[], int s_width)
 {
 	int i, sign;
-
-	if ((sign = n) < 0)	// record sign 
+	sign = n;
+	if (sign  < 0)	// record sign 
 		n = -n;			// make n positive
 	i = 0;
 	do

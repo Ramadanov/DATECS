@@ -91,7 +91,7 @@ void zadacha5_4()
 
 	//a = strlen_2(s);
 	//printf("\n%d,\n",a);
-	printf("\nIf first string occures at the end of seconf string \n print'1'\n else '0'\nResult: %d\n", strend(s, t));
+	printf("\nIf second string occures at the end of first string \n print'1'\n else '0'\nResult: %d\n", strend(s, t));
 }
 int strlen_2(char str[])
 {
@@ -103,10 +103,12 @@ int strlen_2(char str[])
 bool strend(char s[], char t[])
 {
 	bool check = false;
+	int string_width_s = strlen_2(s);
+	int string_width_t = strlen_2(t);
 	//int tempsize = strlen_2(s) - strlen_2(t);
-	for (int i = 0; i <(strlen_2(s) - strlen_2(t)); i++)
+	for (int i = 0; i <(string_width_s - string_width_t); i++)
 	{
-		if (s[i + strlen_2(s) - strlen_2(t)] != t[i])
+		if (s[i + string_width_s - string_width_t] != t[i])
 		{
 			bool check = false;
 			return (check);
