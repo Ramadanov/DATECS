@@ -1,14 +1,20 @@
+/*Write a version of library functions strncpy, strncat and strncmp which operate on first n character on their argument
+strings. For example, strncpy(s, t, n); copiesar most n character of t to s.*/
+
 #include<stdio.h>
 #include <string.h>
 #include <stdlib.h>
-void strncpy_2(char[], char[], int, int);
-void strncat_2(char[], char[], int, int);
-int strncmp_2(char[], char[], int n=-1);
+
+#define MAXSIZE 20
+
+void strncpy_2(char[], char[], int size = MAXSIZE, int n = -1);
+void strncat_2(char [], char[], int size = MAXSIZE, int n = -1); //
+int strncmp_2(char[], char[], int n = -1);
 
 int main()
 {
 	//char str1[10] = "123456", str2[20] = "132456789";
-	char str1[10], str2[20];
+	char str1[MAXSIZE], str2[MAXSIZE];
 	//int n=3;
 	int n;	
 	int ret;
@@ -38,37 +44,39 @@ int main()
 	switch (funcselect)
 	{
 		case 'a':
-			do
+			/*do
 			{
 				printf("How much symbols you wan to change:\n");
 				scanf_s("%d", &n);
 				fseek(stdin, 0, SEEK_END);
-			} while (!(n > 0));
+			} while (!(n > 0));*/
 			// strncpy_s(str1, str2, n);
 			
-			strncpy_2(str1, str2, n, sizeof str1);
+			strncpy_2(str1, str2);
 			printf(str1);
 			break;
 		case 'b':
-			do
+			/*do
 			{
 				printf("How much symbols you wan to concatenate to first string:\n");
 				scanf_s("%d", &n);
 				fseek(stdin, 0, SEEK_END);
-			} while (!(n > 0));
+			} while (!(n > 1));
+			*/
 			//strncat_s(str1, str2, n);
-			strncat_2(str1, str2, n, sizeof str1);
+			strncat_2(str1, str2);
 			printf(str1);
 			break;
 		case 'c':
-			do
+			/*do
 			{
 				printf("How till which symbol should compare:\n");
 				scanf_s("%d", &n);
 				fseek(stdin, 0, SEEK_END);
 			} while (!(n > 0));
+			*/
 			//ret = strncmp(str1, str2, n);
-			ret = strncmp_2(str1, str2, 4);
+			ret = strncmp_2(str1, str2);
 			printf("Result: %d", ret);
 			break;
 	}
@@ -79,7 +87,7 @@ int main()
 	return 0;
 }
 
-void strncpy_2(char str1[], char str2[], int n, int size)
+void strncpy_2(char str1[], char str2[], int size, int n)
 {
 	int i = 0;
 	do
@@ -92,15 +100,15 @@ void strncpy_2(char str1[], char str2[], int n, int size)
 		}
 		str1[i] = str2[i++];
 		
-	} while ((str2[i] != '\0') && (i<n));
+	} while ((str2[i] != '\0') && ((i<n) | (n == -1)));
 	str1[i] = '\0';
 }
 
-void strncat_2(char str1[],char str2[], int n, int size)
+void strncat_2(char str1[],char str2[], int size, int n)
 {
 	int i;
 	for (i = 0; str1[i] != '\0'; ++i);
-	for (int j = 0; (str2[j] != '\0') && (j<n); ++j, ++i)
+	for (int j = 0; (str2[j] != '\0') && ((j<n) | (n == -1)); ++j, ++i)
 	{
 		if (!(i < size))
 		{
