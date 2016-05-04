@@ -102,6 +102,45 @@ void TestPush()
 	//expecting:	13, 1, 1, 2, 3;
 }
 
+void DeleteNode(List_nodes *pnode)
+{
+	List_nodes temp = (*pnode)->next;
+	(*pnode)->data = temp->data;
+	(*pnode)->next = temp->next;
+
+	free(temp);
+}
+
+int DestroyNode(List_nodes *head, int position)
+{
+	List_nodes tempNode = NULL;
+	List_nodes newNode = NULL;
+	newNode = *head;
+	bool invalid = true;
+	int counter = 0;
+
+	while (newNode != NULL)
+	{
+		
+		if (position == counter)
+		{
+			DeleteNode(&newNode);
+			invalid = false;
+		}
+		counter++;
+		newNode = newNode->next;
+	}
+	if (invalid)
+	{
+		printf("ERROR this node doesent exist!\n");
+		return -1;
+	}
+}
+
+
+
+
+//list of functions 1-18
 
 int Count(List_nodes head, int searchFor)
 {
@@ -174,59 +213,52 @@ int Pop(List_nodes* headRef)
 		printf("FAIL Structure is empty");
 		return -1;
 	}
-	
 	//return Newnode;//temp 0 - to be changed
 }
 
 void InsertNth(List_nodes* phead, int index, int data)
 {
 
-	int counter = 0;
-	List_nodes newNode = NULL;
-	newNode = *phead;
 
-	List_nodes addNode = NULL;
-	addNode = (List_nodes)malloc(sizeof(struct NODE));
-	addNode->data = data;
-	addNode->next = NULL;
-
-
-
-	//newNode->data = data;
-	if (index == 0)
+	if ((*phead == NULL) || (index == 0))
 	{
 		Push(phead, data);
 	}
 	else
 	{
+		int counter = 0;
+		List_nodes newNode = NULL;
+		newNode = *phead;
+
+		List_nodes addNode = NULL;
+		addNode = (List_nodes)malloc(sizeof(struct NODE));
+		addNode->data = data;
+		addNode->next = NULL;
+
+
+
 		while (newNode != NULL)
 		{
 			if (counter == index - 1)
 			{
 				addNode->next = newNode->next;
-				//addNode->next=(*phead)->next;
 				newNode->next = addNode;
-				//(*phead)->next = addNode;
-				//Push(&newNode, data);
-				//(*phead)->next = addNode;*/
-				break;
 			}
-			//(*phead) = (*phead)->next;
 			newNode = newNode->next;
 			counter++;
 		}
 		if (newNode == NULL)
 		{
 			printf("there is no such ellement:!!!!!!!!\n");
-		
+
 		}
+
 	}
 }
 
 void SortedInsert(List_nodes* headRef, List_nodes newNode)
 {
 	List_nodes tempNode = NULL;
-	//tempNode = (List_nodes)malloc(sizeof(struct NODE));
 	tempNode = *headRef;
 
 	int counter = 0;
@@ -236,10 +268,137 @@ void SortedInsert(List_nodes* headRef, List_nodes newNode)
 		tempNode = tempNode->next;
 		counter++;
 	}
-	newNode->next = tempNode->next;
-	tempNode->next = newNode;
+	InsertNth(headRef, counter, newNode->data);
+}
 
-	//InsertNth(&tempNode, , newNode->data);
-	//Push(&tempNode, newNode->data);
+void InsertSort(List_nodes* headRef)
+{
+	List_nodes tempNode = NULL;
+	List_nodes tempNode2 = NULL;
 
+	tempNode2 = (List_nodes)malloc(sizeof(struct NODE));
+	tempNode = (*headRef)->next;
+
+	while (tempNode != NULL)
+	{
+		
+		if (tempNode->data < (*headRef)->data)
+		{
+			tempNode2->data = tempNode->data;
+			DeleteNode(&tempNode);
+			SortedInsert(headRef, tempNode2);
+		}
+		else
+		{
+			tempNode = tempNode->next;
+		}
+	}
+}
+void Append(List_nodes* aRef, List_nodes* bRef)
+{
+	List_nodes tempNode = NULL;
+	tempNode = (List_nodes)malloc(sizeof(struct NODE));
+	tempNode = *aRef;
+	while (tempNode->next != NULL)
+	{
+
+		tempNode = tempNode->next;
+	}
+	tempNode->next = *bRef;
+}
+void FrontBackSplit(List_nodes source, List_nodes* frontRef, List_nodes* backRef)
+{
+	int lenght_source = NULL;
+	List_nodes temmpNode = NULL;
+	int conter = 0;
+	
+	temmpNode = source;
+	*frontRef = source;
+	lenght_source = Length(source);
+	lenght_source = (lenght_source / 2) + (lenght_source % 2);
+	printf("length /2 :%d\n", lenght_source);
+	
+
+	while (conter < lenght_source - 1)
+	{
+		temmpNode = temmpNode->next;
+		conter++;
+		
+	}
+	*backRef = temmpNode->next;
+	temmpNode->next = NULL;
+
+}
+
+void RemoveDuplicates(List_nodes head)
+{
+	List_nodes tempNode = NULL;
+	tempNode = head;
+	while (tempNode->next != NULL)
+	{
+		if (tempNode->data == tempNode->next->data)
+		{
+			DeleteNode(&tempNode);
+		}
+		else
+		{
+			tempNode = tempNode->next;
+		}
+	}
+}
+void MoveNode(List_nodes* destRef, List_nodes* sourceRef)
+{
+	//List_nodes temp = NULL;
+	//temp = *sourceRef;
+	
+	Push(destRef, Pop(sourceRef));
+
+
+}
+
+void AlternatingSplit(List_nodes source, List_nodes* aRef, List_nodes* bRef)
+{
+	List_nodes tempNode = NULL;
+	tempNode = source;
+	int current_data;
+
+	while (tempNode != NULL)
+	{
+		current_data = tempNode->data;
+		tempNode = tempNode->next;
+
+		if (current_data % 2 == 0)
+		{
+			Push(aRef, current_data);
+		}
+		else
+		{
+			Push(bRef, current_data);
+		}
+
+	}
+}
+
+List_nodes ShuffleMerge(List_nodes a, List_nodes b)
+{
+	List_nodes head = NULL;
+	head = (List_nodes)malloc(sizeof(struct NODE));
+	int counter = 0;
+
+	while ((a!= NULL)&&(a != NULL))
+	{
+		if (a != NULL)
+		{
+			InsertNth(&head, counter, Pop(&a));
+			counter++;
+		}
+
+		if (b != NULL)
+		{
+			InsertNth(&head, counter, Pop(&b));
+			counter++;
+		}
+	}
+
+	return head;
 }
