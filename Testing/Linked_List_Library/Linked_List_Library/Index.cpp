@@ -113,21 +113,54 @@ int main()
 	printList(odd);
 
 	DeleteList(&Newnode);
-	printf("before ShuffleMerge:\n");
-	printList(Newnode);
-
-	printf("even lists:\n");
-	printList(even);
-	printf("odd lists:\n");
-	printList(odd);
-
-	//InsertNth(&Newnode, 2, 55);
-	Newnode = ShuffleMerge(even, odd);
-	printf("after ShuffleMerge:\n");
+	printf("before ShuffleMerge should be empty:\n");
 	printList(Newnode);
 	
+	InsertNth(&Newnode, 2, 55);
+	Newnode = ShuffleMerge(even, odd);
+	printf("after ShuffleMerge:\n");
+	printList(Newnode);	
+
+	List_nodes first = NULL;
+	List_nodes second = NULL;
 
 
+
+	Push(&first, 14);
+	Push(&first, 9);
+	Push(&first, 7);
+	Push(&first, 7);
+	Push(&first, 5);
+	Push(&first, 1);
+	Push(&first, 0);
+
+	Push(&second, 16);
+	Push(&second, 9);
+	Push(&second, 6);
+	Push(&second, 6);
+	Push(&second, 2);
+	
+	
+	printf("first list:\n");
+	printList(first);
+	printf("second list:\n");
+	printList(second);
+
+	List_nodes sorted_list = NULL;
+
+	sorted_list = SortedMerge(first, second); //need update
+	printf("ordered list:\n");
+	printList(sorted_list);
+
+	printf("first list:\n");
+	printList(first);
+	printf("second list:\n");
+	printList(second);
+
+	printList(Newnode);
+//	MergeSort(&Newnode);
+	printf("after MergeSort:\n");
+	printList(Newnode);
 
 	getchar();
 	return 0;

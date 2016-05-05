@@ -59,4 +59,7 @@ void AlternatingSplit(List_nodes, List_nodes*, List_nodes*);// splite by rule	12
 
 List_nodes ShuffleMerge(List_nodes, List_nodes); //shuffle marge				13)
 
+List_nodes SortedMerge(List_nodes, List_nodes); //sorted marge					14)
+
+void MergeSort(List_nodes*);		//marge sort									15)
 

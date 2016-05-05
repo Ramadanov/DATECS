@@ -144,18 +144,18 @@ int DestroyNode(List_nodes *head, int position)
 
 int Count(List_nodes head, int searchFor)
 {
-	//List_nodes newNode;
-	//newNode = head;
+	List_nodes newNode;
+	newNode = head;
 
 	int counter = 0;
 
-	while (head != NULL)
+	while (newNode != NULL)
 	{
-		if (head->data == searchFor)
+		if (newNode->data == searchFor)
 		{
 			counter++;
 		}
-		head = head->next;
+		newNode = newNode->next;
 	}
 	return counter;
 }
@@ -199,10 +199,11 @@ int Pop(List_nodes* headRef)
 {
 	List_nodes Newnode = NULL;
 	Newnode = *headRef;
-	int temp =(*headRef)->data;
+	int temp;
 
 	if (Newnode != NULL)
 	{
+		temp = (*headRef)->data;
 		*headRef = Newnode->next;
 		free(Newnode);
 		Newnode = *headRef;
@@ -244,8 +245,15 @@ void InsertNth(List_nodes* phead, int index, int data)
 				addNode->next = newNode->next;
 				newNode->next = addNode;
 			}
-			newNode = newNode->next;
-			counter++;
+			if (newNode->next != NULL)
+			{
+				newNode = newNode->next;
+				counter++;
+			}
+
+			else
+				break;
+			
 		}
 		if (newNode == NULL)
 		{
@@ -379,26 +387,128 @@ void AlternatingSplit(List_nodes source, List_nodes* aRef, List_nodes* bRef)
 	}
 }
 
-List_nodes ShuffleMerge(List_nodes a, List_nodes b)
+List_nodes ShuffleMerge(List_nodes first, List_nodes second)
 {
+	
 	List_nodes head = NULL;
 	head = (List_nodes)malloc(sizeof(struct NODE));
-	int counter = 0;
 
-	while ((a!= NULL)&&(a != NULL))
+	List_nodes *temp = NULL;
+	temp = &head;
+	//head->next = NULL;
+
+	while (true)
 	{
-		if (a != NULL)
+		if (first)
 		{
-			InsertNth(&head, counter, Pop(&a));
-			counter++;
+			Push(temp, Pop(&first));
+			if (!(first || second))
+			{
+				break;
+			}
+			temp = &(*temp)->next;	
 		}
 
-		if (b != NULL)
+		if (second)
 		{
-			InsertNth(&head, counter, Pop(&b));
-			counter++;
+			
+			Push(temp, Pop(&second));
+			if (!(first || second))
+			{
+				break;
+			}
+			temp = &(*temp)->next;
 		}
+
 	}
+	(*temp)->next = NULL;
 
 	return head;
 }
+
+List_nodes SortedMerge(List_nodes first, List_nodes second)
+{
+	List_nodes head = NULL;
+	head = (List_nodes)malloc(sizeof(struct NODE));
+
+	List_nodes *temp = NULL;
+	temp = &head;
+
+	List_nodes *temp_f = &first;
+	List_nodes *temp_s = &second;
+	//List_nodes *temp = NULL;
+	//temp = &head;
+	while((*temp_f != NULL) || (*temp_s != NULL))
+	{
+		if ((*temp_f)&&(((*temp_f)->data) < ((*temp_s)->data)))
+		{
+			Push(temp, (*temp_f)->data);
+			if (&(*temp_s) != NULL)
+			{
+				temp_f = &(*temp_f)->next;
+			}
+		}
+		else if(*temp_s)
+		{
+			Push(temp, (*temp_s)->data);
+			if  (&(*temp_s)->next != NULL)
+			{
+				temp_s = &(*temp_s)->next;
+			}
+		}
+		//if ((*temp_f == NULL) && (*temp_s == NULL))
+		{
+			//break;
+		}
+		if (!(*temp_f || *temp_s))
+		{
+			break;
+		}
+		temp = &(*temp)->next;
+	}
+	(*temp)->next = NULL;
+
+	return head;
+}
+
+//FrontBackSplit() and SortedMerge()
+
+void MergeSort(List_nodes *headRef)
+{
+	List_nodes temp = NULL;
+	List_nodes temp_f = NULL;
+	List_nodes temp_s = NULL;
+	temp = *headRef;
+	
+	if ((!(temp->next))||(!(temp)))
+	{
+		return;
+	}
+
+	FrontBackSplit(temp, &temp_f, &temp_s);
+	
+	
+		MergeSort(&temp_f);
+	
+		MergeSort(&temp_s);
+
+	
+	temp =SortedMerge(temp_f, temp_s);
+	
+}
+/*
+struct node* head = *headRef;
+struct node* a;
+struct node* b;
+// Base case -- length 0 or 1
+if ((head == NULL) || (head->next == NULL)) {
+	return;
+}
+FrontBackSplit(head, &a, &b);
+// Split head into 'a' and 'b' sublists
+// We could just as well use AlternatingSplit()
+MergeSort(&a);
+// Recursively sort the sublists
+MergeSort(&b);
+*headRef = SortedMerge(a, b);
+*/
