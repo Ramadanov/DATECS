@@ -113,7 +113,7 @@
     <ClInclude Include="LinkedList.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Index.cpp" />
+    <ClCompile Include="Index.%28main%29.cpp" />
     <ClCompile Include="LinkedList.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
