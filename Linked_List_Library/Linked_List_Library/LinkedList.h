@@ -15,7 +15,7 @@ typedef NODE * List_nodes;
 void Push(List_nodes *, int); //Adds a new node at the head of the list;
 void DeleteNode(List_nodes *); //delete node by pointer;
 int DestroyNode(List_nodes *, int); //delete node from list with position;
-
+void ChangeToNull(List_nodes *);
 void printList(List_nodes); // Print content
 
 int Length(List_nodes);
@@ -60,12 +60,12 @@ void AlternatingSplit(List_nodes, List_nodes*, List_nodes*);// splite by rule	12
 List_nodes ShuffleMerge(List_nodes, List_nodes); //shuffle marge				13)
 
 List_nodes SortedMerge(List_nodes, List_nodes); //sorted marge					14)
+		List_nodes SortedMerge_2(List_nodes, List_nodes);// extra try 
 
-void MergeSort(List_nodes*);		//marge sort									15)
+void MergeSort(List_nodes*);		//marge sort								15)
 
+List_nodes SortedIntersect(List_nodes, List_nodes);		//						16)
 
+void Reverse(List_nodes*);		//												17)
 
-
-
-
-List_nodes SortedMerge_2(List_nodes, List_nodes);// extra try 
+void RecursiveReverse(List_nodes*);		//										18)

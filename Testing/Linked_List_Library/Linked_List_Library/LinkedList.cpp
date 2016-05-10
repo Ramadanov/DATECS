@@ -373,9 +373,12 @@ void RemoveDuplicates(List_nodes head)
 }
 void MoveNode(List_nodes* destRef, List_nodes* sourceRef)
 {
-	//List_nodes temp = NULL;
-	//temp = *sourceRef;
-	Push(destRef, Pop(sourceRef));
+	List_nodes temp = NULL;
+	temp = *sourceRef;
+	*sourceRef = (*sourceRef)->next;
+	temp->next = *destRef;
+	*destRef = temp;
+	//Push(destRef, Pop(sourceRef));
 
 
 }
@@ -570,24 +573,39 @@ List_nodes SortedIntersect(List_nodes a, List_nodes b)
 void Reverse(List_nodes* headRef)
 {
 	List_nodes head = NULL;
-	head = *headRef;
-
-
-
-
+	List_nodes temp = NULL;
+	
+	while (*headRef)
+	{
+		temp = (*headRef)->next;
+		(*headRef)->next = head;
+		head = *headRef;
+		*headRef = temp;
+	}
+	*headRef = head;
 }
+
+
 
 void RecursiveReverse(List_nodes* headRef)
 {
-	List_nodes head = NULL;
-	List_nodes temp = NULL;
-	head = (*headRef)->next;
-	int data;
-	if (head->next != NULL)
+	if (!(*headRef))
 	{
-		RecursiveReverse(&head);
+		return;
 	}
-	((*headRef)->next)->data = (*headRef)->data;
-	(*headRef)->data = head->data;
 
+	List_nodes head = NULL;
+	head = (*headRef)->next;
+	
+	if (!head)
+	{
+		return;
+	}
+
+	RecursiveReverse(&head);
+
+	(*headRef)->next->next = (*headRef);
+	(*headRef)->next = NULL;
+	*headRef = head;
 }
+

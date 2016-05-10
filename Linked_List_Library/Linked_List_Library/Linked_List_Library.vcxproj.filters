@@ -23,7 +23,7 @@
     <ClCompile Include="LinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Index.cpp">
+    <ClCompile Include="Index.%28main%29.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

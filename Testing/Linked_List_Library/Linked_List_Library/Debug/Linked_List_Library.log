@@ -1,5 +1,4 @@
 ﻿  LinkedList.cpp
-c:\users\user\documents\github\datecs\testing\linked_list_library\linked_list_library\linkedlist.cpp(585): warning C4101: 'data': unreferenced local variable
 c:\users\user\documents\github\datecs\testing\linked_list_library\linked_list_library\linkedlist.cpp(131): warning C4715: 'DestroyNode': not all control paths return a value
   Linked_List_Library.vcxproj -> C:\Users\User\Documents\GitHub\DATECS\Testing\Linked_List_Library\Debug\Linked_List_Library.exe
   Linked_List_Library.vcxproj -> C:\Users\User\Documents\GitHub\DATECS\Testing\Linked_List_Library\Debug\Linked_List_Library.pdb (Partial PDB)

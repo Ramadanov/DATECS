@@ -34,11 +34,17 @@ void printList(List_nodes node)
 {
 
 	printf("List of Nodes:\t");
-	while (node != NULL) //go through nodes
+	if (node == NULL)
 	{
-		printf(" %d ", node->data);//print current node
-		
-		node = node->next; //go to next node
+		printf("List is empty!\n\t");
+	}
+	else {
+		while (node != NULL) //go through nodes
+		{
+			printf(" %d ", node->data);//print current node
+
+			node = node->next; //go to next node
+		}
 	}
 	printf("\n\n");
 }
@@ -61,6 +67,7 @@ List_nodes BuildOneTwoThree()
 void ChangeToNull(List_nodes* headRef) { // Takes a pointer to
 										   // the value of interest
 	*headRef = NULL; // use '*' to access the value of interest
+	//(*headRef) = NULL;
 }
 
 List_nodes AddAtHead() {
@@ -169,17 +176,24 @@ int GetNth(List_nodes head, int index)
 
 void DeleteList(List_nodes *phead)
 {
-	List_nodes Newnode = NULL;
-	Newnode = *phead;
-
-	while (Newnode != NULL)
+	if (*phead)
 	{
-		*phead=Newnode->next;
-		free(Newnode);
+		List_nodes Newnode = NULL;
 		Newnode = *phead;
-	}
+		
 
-	ChangeToNull(phead);
+		while (Newnode != NULL)
+		{
+			*phead = Newnode->next;
+			free(Newnode);
+			Newnode = *phead;
+		}
+		ChangeToNull(phead);
+	}
+	else
+	{
+		printf("List is empty");
+	}
 }
 
 int Pop(List_nodes* headRef)
@@ -191,9 +205,23 @@ int Pop(List_nodes* headRef)
 	if (Newnode != NULL)
 	{
 		temp = (*headRef)->data;
-		*headRef = Newnode->next;
-		free(Newnode);
-		Newnode = *headRef;
+		if ((*headRef)->next != NULL)
+		{
+			*headRef = Newnode->next;
+			free(Newnode);
+			Newnode = *headRef;
+		}
+		else
+		{
+			free(Newnode);
+			//ChangeToNull(&(*headRef));
+			ChangeToNull(headRef);
+
+
+
+		}
+		
+		
 		return temp;
 	}
 	else 
@@ -294,12 +322,14 @@ void Append(List_nodes* aRef, List_nodes* bRef)
 	List_nodes tempNode = NULL;
 	tempNode = (List_nodes)malloc(sizeof(struct NODE));
 	tempNode = *aRef;
+	//if (tempNode->next = Null)
 	while (tempNode->next != NULL)
 	{
 
 		tempNode = tempNode->next;
 	}
 	tempNode->next = *bRef;
+	(*bRef) = NULL;
 }
 void FrontBackSplit(List_nodes source, List_nodes* frontRef, List_nodes* backRef)
 {
@@ -311,7 +341,7 @@ void FrontBackSplit(List_nodes source, List_nodes* frontRef, List_nodes* backRef
 	*frontRef = source;
 	lenght_source = Length(source);
 	lenght_source = (lenght_source / 2) + (lenght_source % 2);
-	printf("length /2 :%d\n", lenght_source);
+	//printf("length /2 :%d\n", lenght_source);
 	
 
 	while (conter < lenght_source - 1)
@@ -343,10 +373,12 @@ void RemoveDuplicates(List_nodes head)
 }
 void MoveNode(List_nodes* destRef, List_nodes* sourceRef)
 {
-	//List_nodes temp = NULL;
-	//temp = *sourceRef;
-	
-	Push(destRef, Pop(sourceRef));
+	List_nodes temp = NULL;
+	temp = *sourceRef;
+	*sourceRef = (*sourceRef)->next;
+	temp->next = *destRef;
+	*destRef = temp;
+	//Push(destRef, Pop(sourceRef));
 
 
 }
@@ -417,28 +449,23 @@ List_nodes SortedMerge(List_nodes first, List_nodes second)
 {
 	List_nodes head = NULL;
 	List_nodes* lastPtrRef = &head;
-	// point to the last result pointer
-	while (true) 
-	{
-		if (first == NULL) 
-		{
+	while (1) {
+		if (first == NULL) {
 			*lastPtrRef = second;
 			break;
 		}
-		else if (second == NULL) 
-		{
+		else if (second == NULL) {
 			*lastPtrRef = first;
 			break;
 		}
-		if (first->data <= second->data) {
-			MoveNode(lastPtrRef, &first);
-		}
-		else {
+		if (first->data > second->data) {
 			MoveNode(lastPtrRef, &second);
 		}
+		else {
+			MoveNode(lastPtrRef, &first);
+			
+		}
 		lastPtrRef = &((*lastPtrRef)->next);
-		// tricky: advance to point to
-		// the next ".next" field
 	}
 	return(head);
 }
@@ -488,8 +515,6 @@ List_nodes SortedMerge_2(List_nodes first, List_nodes second) // need update
 	return head;
 }
 
-//FrontBackSplit() and SortedMerge()
-
 void MergeSort(List_nodes *headRef)
 {
 	List_nodes temp = NULL;
@@ -503,29 +528,84 @@ void MergeSort(List_nodes *headRef)
 	}
 
 	FrontBackSplit(temp, &temp_f, &temp_s);
-	
-	
-		MergeSort(&temp_f);
-	
-		MergeSort(&temp_s);
 
+	MergeSort(&temp_f);
+	MergeSort(&temp_s);
 	
-	temp =SortedMerge(temp_f, temp_s);
+	*headRef =SortedMerge(temp_f, temp_s);
 	
 }
-/*
-struct node* head = *headRef;
-struct node* a;
-struct node* b;
-// Base case -- length 0 or 1
-if ((head == NULL) || (head->next == NULL)) {
-	return;
+
+List_nodes SortedIntersect(List_nodes a, List_nodes b)
+{
+	List_nodes head = NULL;
+	head = (List_nodes)malloc(sizeof(struct NODE));
+	List_nodes* lastPtrRef = NULL;
+	lastPtrRef = &head;
+	List_nodes* first = &a;
+	List_nodes* second = &b;
+	while ((*first != NULL)||(*second != NULL))
+	{
+		if (*first == NULL) {
+			Push(lastPtrRef, (*second)->data);
+			second = &((*second)->next);
+		}
+		else if (*second == NULL) {
+			Push(lastPtrRef, (*first)->data);
+			first = &((*first)->next);
+		}
+		else if ((*first)->data > (*second)->data) {
+			Push(lastPtrRef, (*second)->data);
+			second = &((*second)->next);
+		}
+		else {
+			Push(lastPtrRef, (*first)->data);
+			first = &((*first)->next);
+		}
+		lastPtrRef = &((*lastPtrRef)->next);
+	}
+	*lastPtrRef = NULL;
+	return(head);
+
 }
-FrontBackSplit(head, &a, &b);
-// Split head into 'a' and 'b' sublists
-// We could just as well use AlternatingSplit()
-MergeSort(&a);
-// Recursively sort the sublists
-MergeSort(&b);
-*headRef = SortedMerge(a, b);
-*/
+
+
+void Reverse(List_nodes* headRef)
+{
+	List_nodes head = NULL;
+	List_nodes temp = NULL;
+	
+	while (*headRef)
+	{
+		temp = (*headRef)->next;
+		(*headRef)->next = head;
+		head = *headRef;
+		*headRef = temp;
+	}
+	*headRef = head;
+}
+
+
+
+void RecursiveReverse(List_nodes* headRef)
+{
+	if (!(*headRef))
+	{
+		return;
+	}
+
+	List_nodes head = NULL;
+	head = (*headRef)->next;
+	
+	if (!head)
+	{
+		return;
+	}
+
+	RecursiveReverse(&head);
+
+	(*headRef)->next->next = (*headRef);
+	(*headRef)->next = NULL;
+	*headRef = head;
+}
+
