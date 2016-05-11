@@ -1,7 +1,2 @@
-﻿  functions.cpp
-c:\users\user\documents\github\datecs\testing\sorting algorithms\sorting algorithms\functions.cpp(32): warning C4129: 'I': unrecognized character escape sequence
-c:\users\user\documents\github\datecs\testing\sorting algorithms\sorting algorithms\functions.cpp(57): warning C4129: 'B': unrecognized character escape sequence
-  Tests.cpp
-  Generating Code...
-  Sorting Algorithms.vcxproj -> C:\Users\User\Documents\GitHub\DATECS\Testing\Sorting Algorithms\Debug\Sorting Algorithms.exe
+﻿  Sorting Algorithms.vcxproj -> C:\Users\User\Documents\GitHub\DATECS\Testing\Sorting Algorithms\Debug\Sorting Algorithms.exe
   Sorting Algorithms.vcxproj -> C:\Users\User\Documents\GitHub\DATECS\Testing\Sorting Algorithms\Debug\Sorting Algorithms.pdb (Partial PDB)

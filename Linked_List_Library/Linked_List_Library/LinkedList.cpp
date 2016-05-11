@@ -544,29 +544,36 @@ List_nodes SortedIntersect(List_nodes a, List_nodes b)
 	lastPtrRef = &head;
 	List_nodes* first = &a;
 	List_nodes* second = &b;
-	while ((*first != NULL)||(*second != NULL))
+	while ((*first != NULL) || (*second != NULL))
 	{
 		if (*first == NULL) {
-			Push(lastPtrRef, (*second)->data);
-			second = &((*second)->next);
+			*lastPtrRef = NULL;
+			return(head);
 		}
 		else if (*second == NULL) {
-			Push(lastPtrRef, (*first)->data);
-			first = &((*first)->next);
+			*lastPtrRef = NULL;
+			return(head);
 		}
-		else if ((*first)->data > (*second)->data) {
-			Push(lastPtrRef, (*second)->data);
+		else if ((*first)->data > (*second)->data) 
+		{
 			second = &((*second)->next);
 		}
-		else {
-			Push(lastPtrRef, (*first)->data);
+		else if ((*first)->data < (*second)->data) 
+		{
 			first = &((*first)->next);
 		}
-		lastPtrRef = &((*lastPtrRef)->next);
+		else
+		{
+			Push(lastPtrRef, (*first)->data);
+			first = &((*first)->next);
+			second = &((*second)->next);
+			lastPtrRef = &((*lastPtrRef)->next);
+		}
+
+		
 	}
 	*lastPtrRef = NULL;
 	return(head);
-
 }
 
 
@@ -584,7 +591,6 @@ void Reverse(List_nodes* headRef)
 	}
 	*headRef = head;
 }
-
 
 
 void RecursiveReverse(List_nodes* headRef)
@@ -607,5 +613,42 @@ void RecursiveReverse(List_nodes* headRef)
 	(*headRef)->next->next = (*headRef);
 	(*headRef)->next = NULL;
 	*headRef = head;
+
 }
 
+
+
+List_nodes SortingMarge_2(List_nodes a, List_nodes b)
+{
+	List_nodes head = NULL;
+	head = (List_nodes)malloc(sizeof(struct NODE));
+	List_nodes* lastPtrRef = NULL;
+	lastPtrRef = &head;
+	List_nodes* first = &a;
+	List_nodes* second = &b;
+	while ((*first != NULL) || (*second != NULL))
+	{
+		if (*first == NULL) {
+			Push(lastPtrRef, (*second)->data);
+			second = &((*second)->next);
+		}
+		else if (*second == NULL) {
+			Push(lastPtrRef, (*first)->data);
+			first = &((*first)->next);
+		}
+		else if ((*first)->data > (*second)->data) 
+		{
+			Push(lastPtrRef, (*second)->data);
+			second = &((*second)->next);
+		}
+		else 
+		{
+			Push(lastPtrRef, (*first)->data);
+			first = &((*first)->next);
+		}
+		lastPtrRef = &((*lastPtrRef)->next);
+	}
+	*lastPtrRef = NULL;
+	return(head);
+
+}

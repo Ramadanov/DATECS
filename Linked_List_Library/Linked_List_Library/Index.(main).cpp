@@ -292,11 +292,15 @@ int main()
 
 	Push(&first, 14);
 	Push(&first, 9);
-	Push(&first, 2);
+	Push(&first, 9);
+	Push(&first, 3);
 	Push(&first, 1);
 
-
-
+	Push(&second, 14);
+	Push(&second, 13);
+	Push(&second, 9);
+	Push(&second, 9);
+	Push(&second, 5);
 	Push(&second, 5); 
 	Push(&second, 4); 
 	Push(&second, 3);
